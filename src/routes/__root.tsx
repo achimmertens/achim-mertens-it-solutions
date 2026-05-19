@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Achim Mertens · IT Consulting, Programmierung & Webdesign" },
       { name: "description", content: "Achim Mertens – freier IT-Consultant aus Eschweiler. Beratung, Identity & Access Management, individuelle Softwareentwicklung, Webdesign, KI & Automatisierung." },
       { name: "author", content: "Achim Mertens" },
-      { property: "og:title", content: "Achim Mertens · Software Consulting" },
+      { property: "og:title", content: "Achim Mertens · IT Consulting" },
       { property: "og:description", content: "IT-Beratung, Softwareentwicklung, Webdesign und KI-Lösungen aus Eschweiler." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

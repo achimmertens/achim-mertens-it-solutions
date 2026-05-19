@@ -40,7 +40,7 @@ function Kontakt() {
             <Phone size={22} />
           </div>
           <h2 className="mt-4 text-xl font-bold text-card-foreground">Telefon</h2>
-          <p className="mt-1 text-muted-foreground">Direkter Draht, deutschsprachig. Hinweis: Ein Anruf kostet 15 € pauschal zzgl. Arbeitszeit.</p>
+          <p className="mt-1 text-muted-foreground">Direkter Draht, deutschsprachig.</p>
           <span className="mt-3 font-semibold text-primary group-hover:text-accent">+49 1517 4412216</span>
         </a>
 

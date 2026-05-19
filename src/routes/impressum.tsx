@@ -19,7 +19,7 @@ function Impressum() {
           <h2 className="text-xl font-semibold text-primary">Angaben gemäß § 5 TMG</h2>
           <address className="mt-2 not-italic">
             Achim Mertens<br />
-            Software Consulting Mertens<br />
+            IT Consulting Mertens<br />
             Vennstr. 31<br />
             52249 Eschweiler<br />
             Deutschland

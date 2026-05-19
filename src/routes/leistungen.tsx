@@ -14,11 +14,11 @@ export const Route = createFileRoute("/leistungen")({
 const items = [
   { icon: Lightbulb, title: "Generelle IT-Beratung", desc: "Strategie, Technologie-Auswahl, Architektur-Reviews. Ich höre zu, ordne ein und gebe Ihnen einen klaren nächsten Schritt – ohne versteckte Eigeninteressen." },
   { icon: Shield, title: "Identity & Access Management", desc: "Konzeption, Tool-Auswahl und Einführung von IAM-Lösungen. Rollen- und Berechtigungskonzepte, SSO, Federation und User Lifecycle." },
-  { icon: Code2, title: "Individuelle Softwareentwicklung", desc: "Maßgeschneiderte Tools, REST- und GraphQL-APIs, Datenbank-Anbindungen, Skripte und Schnittstellen – sauber dokumentiert und wartbar." },
-  { icon: Globe, title: "Webdesign & Webentwicklung", desc: "Schnelle, moderne Webseiten mit React, TanStack & Tailwind. SEO-optimiert, barrierearm, mobilfreundlich – wie diese Seite hier." },
+  { icon: Code2, title: "Individuelle Softwareentwicklung", desc: "Maßgeschneiderte Tools, API- und Datenbank-Anbindungen, Skripte, ... – sauber dokumentiert und wartbar." },
+  { icon: Globe, title: "Webdesign & Webentwicklung", desc: "Schnelle, moderne Webseiten mit Javascript. SEO-optimiert, barrierearm, mobilfreundlich – wie diese Seite hier." },
   { icon: Cloud, title: "IT-Infrastruktur", desc: "Installation, Monitoring und Wartung. Cloud (AWS, Azure, Hetzner) oder klassisch On-Premises – inklusive Backup- und Update-Strategie." },
-  { icon: Bot, title: "KI & Automatisierung", desc: "LLM-Integration, RAG-Anwendungen, OpenClaw-Agenten mit Telegram-Anbindung, n8n-Workflows und individuelle Bots." },
-  { icon: GraduationCap, title: "Schulungen & Workshops", desc: "Praktische Workshops zu IT-Sicherheit, IAM, Webentwicklung, KI-Tools und Automatisierung – remote oder vor Ort." },
+  { icon: Bot, title: "KI & Automatisierung", desc: "LLM-Integration, RAG-Anwendungen, OpenClaw-Agenten mit Telegram-Anbindung und individuelle Bots." },
+  { icon: GraduationCap, title: "Schulungen & Workshops", desc: "Praktische Recherche und Workshops zu IT-Themen Ihrer Wahl (nicht nur IAM, Webentwicklung, KI-Tools und Automatisierung) – remote oder vor Ort." },
 ];
 
 function Leistungen() {

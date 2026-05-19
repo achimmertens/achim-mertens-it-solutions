@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="mt-24 bg-primary text-primary-foreground">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
-          <h3 className="text-lg font-semibold mb-3">Software Consulting Mertens</h3>
+          <h3 className="text-lg font-semibold mb-3">IT Consulting Mertens</h3>
           <p className="text-sm text-primary-foreground/70 leading-relaxed">
             IT-Beratung, Programmierung & Webdesign aus Eschweiler. Pragmatisch, persönlich, herstellerunabhängig.
           </p>

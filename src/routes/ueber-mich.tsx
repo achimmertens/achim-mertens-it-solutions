@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Linkedin, Github, MapPin } from "lucide-react";
 import profile from "@/assets/profile.jpg";
+import dtLogo from "@/assets/deutsche-telekom-logo.png";
 
 export const Route = createFileRoute("/ueber-mich")({
   head: () => ({
@@ -13,49 +14,115 @@ export const Route = createFileRoute("/ueber-mich")({
 });
 
 const cv = [
-  { period: "seit 2023", role: "Freier IT-Consultant", org: "Software Consulting Mertens, Eschweiler",
-    bullets: ["IT-Beratung, IAM, Softwareentwicklung & Webdesign für KMU und Privatkunden", "KI-Automatisierung mit OpenClaw, n8n und LLM-Integrationen", "Hosting und Wartung von Kundenwebseiten"] },
-  { period: "2018 – 2023", role: "IAM Senior Consultant", org: "Konzernumfeld (Energie / Industrie)",
-    bullets: ["Konzeption und Einführung großer Identity-&-Access-Management-Lösungen", "Rollenmodelle, SSO, Federation, User Lifecycle Management", "Verantwortlich für Architektur und Toolauswahl"] },
-  { period: "2008 – 2018", role: "Senior IT-Berater & Entwickler", org: "Internationale IT-Dienstleister",
-    bullets: ["Individuelle Softwareentwicklung (Java, JavaScript, Python)", "Aufbau und Betrieb verteilter IT-Infrastrukturen", "Kundenprojekte in DE, NL und CH"] },
-  { period: "ab ca. 2000", role: "Einstieg & Aufbau", org: "IT-Beratung & Entwicklung",
-    bullets: ["Erste Stationen als Entwickler und System-Engineer", "Über 25 Jahre Praxiserfahrung – vom Skript bis zur Konzern-Architektur"] },
+  {
+    period: "Nov. 2024–Heute",
+    role: "System Engineer für IAM Aufbau und Betrieb bei der Deutschen Rentenversicherung (DRV)",
+    org: "Deutsche Telekom",
+    bullets: [
+      "In unserem 7 Köpfigen Team erarbeiten wir ein Konzept für die zentrale Lösung eines Identity- und Access-Management Systems.",
+      "Ich bin dort mit einem anderen Kollegen für die Installation und den Betrieb der notwendigen Server zuständig.",
+      "Installation einer POC Umgebung im IAM Umfeld."
+    ]
+  },
+  {
+    period: "Juli 2024–Okt. 2024",
+    role: "Software Engineer Agile für GreenCode",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Unser Team 'Vanya' entwickelt ein Dashboard, welches den Energieverbrauch von Pipeline-Jobs graphisch darstellt.",
+      "Ich arbeite am Frontend (Behebung von Bugs), im Backend (Bashscript zur Transformation von Daten) und helfe bei der Darstellung in Grafana.",
+      "Mit einer selbsttrainierten KI und Pythonscripten versuchen wir Code zu optimieren."
+    ]
+  },
+  {
+    period: "Apr. 2022–Juni 2024",
+    role: "Software Engineer Agile für FileWrapper",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Unser Team 'CodeBoosters' setzte Epics und Userstories um, die folgende Themen beinhalteten: Fileexporter- und Wrapper-Microservices und Frontend-GUI Erstellung.",
+      "Programmieraufgaben, die wir via agile Methoden erhielten, wies ich mir beim Sprintplanning zu und arbeitete diese ab.",
+      "Dazu gehörte das Anbinden von Monitoring (Java) und die Erstellung von Komponenten eines Frontends (Angular)."
+    ]
+  },
+  {
+    period: "Nov. 2021–März 2022",
+    role: "New Skilling Academy Developer",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Wir lernten in der Akademie die Grundlagen der Full Stack Softwareentwicklung mit folgenden Themen: Java, Frameworks, die auf Java basieren (nodeJS, React, Spring, ...) und Devops (Git, Docker, Kubernetes, CICD-Pipelines).",
+      "Unsere Aufgaben waren lernen und nachvollziehen durch Ausprobieren."
+    ]
+  },
+  {
+    period: "Juni 2019–Nov. 2021",
+    role: "Product Owner vom Betrieb des CIAM Services",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Im Sommer 2019 wurden wir in einem Hub neu aufgestellt.",
+      "Unser ca. 30-köpfiges Team arbeitete mit agilen Methoden am Betrieb der zentralen Corporate Identity and Access Management (CIAM) Server und dem dazugehörenden Kunden-Support.",
+      "Als Product Owner pflegte und priorisierte ich im Jira das Backlog unseres Kanban-Boards.",
+      "Ich sprach auf der einen Seite mit den Anforderern der Aufgaben (Entwicklung, Product Manager, ...), klärte Termine und Abhängigkeiten.",
+      "Auf der anderen Seite sprach ich mit unserem Team und erklärte die Notwendigkeiten.",
+      "Zusammen mit unserer Scrummasterin transformierten wir unsere Gruppe in ein familieres und vertrauensvolles Team."
+    ]
+  },
+  {
+    period: "Mai 2013–Mai 2019",
+    role: "Betriebskoordinator CIAM",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Der Telekom-zentrale CIAM Dienst wurde von unserem 40 Personen Team betrieben.",
+      "Ich war verantwortlich für die Koordination der Informationen und Aufgaben.",
+      "In unserer Obhut lagen die Data Consolidation Layer (DCL)-, LDAP-, MS-SQL-, IBM TIM- und TAM Server für die jeweils Dev-, Test- und Prod-Umgebungen.",
+      "Wir waren Teil des 'Demand 2 Solution' Prozesses."
+    ]
+  },
+  {
+    period: "Feb. 2009–Apr. 2013",
+    role: "Betrieb DCL Server",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Wir haben als 4-köpfiges Team die zentralen DCL Server des CIAM Systems der Deutschen Telekom betrieben.",
+      "Dazu gehörten die MS-SQL- und die Solaris Server (mit der DCL Logic) für die Dev-, Test- und Produktionsumgebungen.",
+      "Des Weiteren kümmerten wir uns um die Schnittstellen und die Korrektheit des Datenim- und exports."
+    ]
+  },
+  {
+    period: "Feb. 1998–Jan. 2009",
+    role: "Betrieb Lotus Domino/Notes",
+    org: "Deutsche Telekom",
+    bullets: [
+      "Als Mitglied eines 10-köpfigen Teams war ich verantwortlich für den Betrieb von Lotus Dominio Servern und Lotus Notes Installationen sowohl für die Debis GmbH (die später zur T-Systems wurde) als auch für externe Kunden wie z.B.: Klingel, T-Systems (Schweiz), Bahlsen, Canon (Niederlande), Heitcamp+Thumann, ...",
+      "Zu meinen Aufgaben gehörten auch: 1.+2. Level Support, kleine Projektleitungen, Schulungen halten, ..."
+    ]
+  }
 ];
 
-const skills = ["IAM", "SSO / Federation", "TypeScript & React", "Node.js", "Python", "Java", "n8n", "OpenClaw", "LLM / RAG", "AWS", "Hetzner Cloud", "Linux", "PostgreSQL", "Tailwind", "TanStack", "Telegram Bots"];
+const skills = ["IAM", "SSO / Federation", "TypeScript & React", "Node.js", "Python", "Java", "OpenClaw", "LLM / RAG", "AWS", "Hetzner Cloud", "Linux", "SQL", "Tailwind", "Telegram Bots"];
 
 function UeberMich() {
   return (
     <>
-      <section className="bg-primary text-primary-foreground">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-20 grid md:grid-cols-[auto_1fr] gap-10 items-center">
-          <img src={profile} alt="Achim Mertens" width={208} height={208}
-            className="w-44 h-44 md:w-52 md:h-52 object-cover rounded-2xl border-4 border-white/20 shadow-2xl" />
-          <div>
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest">Über mich</p>
-            <h1 className="mt-2 text-4xl md:text-5xl font-bold">Achim Mertens</h1>
-            <p className="mt-3 text-lg text-primary-foreground/85">
-              Freier IT-Consultant, Programmierer und Webdesigner. Ich verbinde Konzern-Erfahrung mit der Pragmatik des Mittelstands.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3 text-sm">
-              <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full"><MapPin size={14} /> Eschweiler, DE</span>
-              <a href="https://www.linkedin.com/in/achim-mertens-97b0" target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-accent px-3 py-1.5 rounded-full transition"><Linkedin size={14} /> LinkedIn</a>
-              <a href="https://github.com/achimmertens" target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-accent px-3 py-1.5 rounded-full transition"><Github size={14} /> GitHub</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+  <h2 className="text-3xl font-bold text-primary">Erfahrung</h2>
+  <div className="mt-4 space-y-6">
+    <div className="experience-entry">
+      <img src={dtLogo} alt="Deutsche Telekom Logo" className="h-12 w-12 mr-4" />
+      <div>
+        <p className="text-sm font-bold">Deutsche Telekom</p>
+        <p className="text-muted-foreground">Vollzeit · Seit 1998</p>
+      </div>
+    </div>
+    {/* Add other entries similarly */}
+    {/* Repeat for each experience block */}
+  </div>
+</section>
       <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
         <h2 className="text-3xl font-bold text-primary">Lebenslauf</h2>
         <p className="mt-2 text-muted-foreground">
           Auszug meiner beruflichen Stationen – ergänzend zu meinem{" "}
           <a className="text-accent font-medium hover:underline" href="https://www.linkedin.com/in/achim-mertens-97b0" target="_blank" rel="noreferrer">LinkedIn-Profil</a>.
         </p>
-
         <ol className="mt-10 relative border-l-2 border-border ml-2">
           {cv.map((c) => (
             <li key={c.period} className="ml-6 pb-10">

@@ -20,7 +20,7 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
           <img src={logo} alt="Achim Mertens Logo" width={36} height={36} className="h-9 w-9" />
           <span className="text-primary">Achim Mertens</span>
-          <span className="hidden sm:inline text-muted-foreground text-sm">· Software Consulting</span>
+          <span className="hidden sm:inline text-muted-foreground text-sm">· IT Consulting</span>
         </Link>
         <nav className="hidden md:flex items-center gap-1">
           {nav.map((n) => (

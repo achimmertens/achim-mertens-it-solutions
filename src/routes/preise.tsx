@@ -25,13 +25,13 @@ const pauschalen = [
     title: "Statische Webseite (Prototyp)",
     price: "500 €",
     desc: "Eine einfache, statische Webseite wie diese hier – inklusive 3 Stunden Beratung.",
-    highlight: false,
+    highlight: true,
   },
   {
     title: "Webseiten-Hosting",
     price: "30 € / Monat",
     desc: "Monitoring, Updates, Code-Backups und Hosting. Sie haben Ruhe, ich habe das Auge drauf.",
-    highlight: true,
+    highlight: false,
   },
   {
     title: "OpenClaw-KI-Agent",
@@ -79,7 +79,7 @@ function Preise() {
           {pauschalen.map((p) => (
             <div
               key={p.title}
-              className={`p-7 rounded-xl border ${p.highlight ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border"}`}
+                            className={`p-7 rounded-xl border ${p.highlight ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border"}`}
               style={{ boxShadow: p.highlight ? "var(--shadow-card)" : "var(--shadow-soft)" }}
             >
               {p.highlight && <span className="inline-block text-xs font-bold uppercase tracking-widest bg-accent text-accent-foreground px-2 py-1 rounded">Beliebt</span>}
