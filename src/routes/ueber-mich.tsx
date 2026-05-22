@@ -271,10 +271,19 @@ function UeberMich() {
             </a>
           </div>
           <p className="text-sm text-muted-foreground">
-            Ich spreche (fast) täglich in mein Handy in Telegram einen kurzen Text an meinen Openclaw Bot. Z.B. "Füge folgendes in mein Tagebuch hinzu:...". Der KI Agent erstellt dann lokale Tagebucheinträge, die (nur) ich auch in meinem persönichen Wiki finde, und macht einmal wöchentlich einen Vorschlag für eine Zusammenfassung. 
+            Ich spreche (fast) täglich in mein Handy in Telegram einen kurzen Text an meinen Openclaw Bot. Z.B. "Füge folgendes in mein Tagebuch hinzu:...". Der KI Agent erstellt dann lokale Tagebucheinträge, die (nur) ich auch in meinem persönlichen Wiki finde.
+          </p>
+          <div className="mt-4">
+            <img
+              src="https://files.peakd.com/file/peakd-hive/achimmertens/23wMkmZmUetiwQWfdMctybXTQUBDnhuGdkEW4amjJ7wmr5Pwd9qk61LTfF7L9haLzc91S.png"
+              alt="Tagebucheintrag Screenshot"
+              className="w-full rounded-2xl border border-border shadow"
+            />
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Einmal wöchentlich macht mein Agent automatisch einen Vorschlag für eine Zusammenfassung. 
             Diese überarbeite ich und poste sie dann in die Hive Blockchain:
           </p>
-
           {isLoading && (
             <div className="mt-6 flex items-center justify-center gap-3 text-muted-foreground">
               <ExternalLink size={16} className="animate-bounce" />
