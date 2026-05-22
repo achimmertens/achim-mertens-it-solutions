@@ -260,9 +260,9 @@ function UeberMich() {
 
         <div className="mt-10">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-            <h3 className="text-xl font-bold text-primary">Letzte Blogeinträge</h3>
+            <h3 className="text-xl font-bold text-primary">Letzte Tagebuch-Blogeinträge</h3>
             <a
-              href="https://peakd.com/@achimmertens"
+              href="https://peakd.com/@achimmertens/posts"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent font-semibold hover:underline flex items-center gap-1"
@@ -271,7 +271,8 @@ function UeberMich() {
             </a>
           </div>
           <p className="text-sm text-muted-foreground">
-            Die ältere Website ist weiterhin unter <a className="text-accent underline" href="https://greensniper.wordpress.com" target="_blank" rel="noreferrer">greensniper.wordpress.com</a> erreichbar.
+            Ich spreche (fast) täglich in mein Handy in Telegram einen kurzen Text an meinen Openclaw Bot. Z.B. "Füge folgendes in mein Tagebuch hinzu:...". Der KI Agent erstellt dann lokale Tagebucheinträge, die (nur) ich auch in meinem persönichen Wiki finde, und macht einmal wöchentlich einen Vorschlag für eine Zusammenfassung. 
+            Diese überarbeite ich und poste sie dann in die Hive Blockchain:
           </p>
 
           {isLoading && (
@@ -331,7 +332,11 @@ function UeberMich() {
             </div>
           )}
         </div>
+                  <p className="text-sm text-muted-foreground">
+            Eine alte Website von mir ist unter <a className="text-accent underline" href="https://greensniper.wordpress.com" target="_blank" rel="noreferrer">greensniper.wordpress.com</a> erreichbar.
+          </p>
       </section>
     </>
   );
 }
+

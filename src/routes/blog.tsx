@@ -127,7 +127,7 @@ function Blog() {
           <p className="text-accent text-sm font-semibold uppercase tracking-widest">Blog</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">Meine Dokumentation aus der IT-Praxis</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80 text-lg">
-            Live von der Hive-Blockchain: meine neuesten Artikel mit dem Hashtag{" "}
+            Live von der Hive-Blockchain: Meine neuesten Artikel mit dem Hashtag{" "}
             <code className="px-1.5 py-0.5 bg-white/10 rounded text-accent">doku</code> von{" "}
             <a
               href="https://peakd.com/@achimmertens?filter=doku"
