@@ -12,7 +12,7 @@ export const Route = createFileRoute("/preise")({
 });
 
 const stunden = [
-  { label: "Erstes Kennenlernen", price: "0 €", note: "Die erste Stunde Beratung ist kostenlos." },
+  { label: "Erstes Kennenlernen", price: "0 €", note: "Die erste \"Stunde\" Beratung ist kostenlos. Wir entscheiden gemeinsam, ab wann abgerechnet wird." },
   { label: "Online-Kommunikation", price: "80 € / h" },
   { label: "Vor-Ort-Anwesenheit", price: "100 € / h" },
   { label: "Programmierung, Wartung, offline Kommunikation …", price: "60 € / h" },
@@ -36,7 +36,21 @@ const pauschalen = [
   {
     title: "OpenClaw-KI-Agent",
     price: "900 €",
-    desc: "Installation eines OpenClaw-Agenten mit Telegram-Anbindung und KI-Integration – inkl. 5 Stunden Beratung, zzgl. Hostingkosten.",
+    desc: (
+      <>
+        Installation eines OpenClaw-Agenten mit Telegram-Anbindung und KI-Integration –
+        inkl. 5 Stunden Beratung, zzgl. Hostingkosten. Werden Sie Herr über Ihre interne
+        Datenflut und nutzen Sie KI-gestützte Automatisierung, ohne Ihre Daten an Dritte
+        weiterzugeben. <a
+          href="https://peakd.com/hive-121566/@achimmertens/openclaw-llm-wiki-und-meilisearch-erfahrungsbericht"
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent font-semibold underline"
+        >
+          Beispiel
+        </a>
+      </>
+    ),
     highlight: false,
   },
 ];
