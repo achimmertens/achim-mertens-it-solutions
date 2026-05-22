@@ -103,7 +103,7 @@ const skills = ["IAM", "SSO / Federation", "TypeScript & React", "Node.js", "Pyt
 function UeberMich() {
   return (
     <>
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-6">
   <h2 className="text-3xl font-bold text-primary">Erfahrung</h2>
   <div className="mt-4 space-y-6">
     <div className="experience-entry">
@@ -117,10 +117,10 @@ function UeberMich() {
     {/* Repeat for each experience block */}
   </div>
 </section>
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-16">
         <h2 className="text-3xl font-bold text-primary">Lebenslauf</h2>
         <p className="mt-2 text-muted-foreground">
-          Auszug meiner beruflichen Stationen – ergänzend zu meinem{" "}
+          Auszug meiner beruflichen Stationen – entnommen aus meinem{" "}
           <a className="text-accent font-medium hover:underline" href="https://www.linkedin.com/in/achim-mertens-97b0" target="_blank" rel="noreferrer">LinkedIn-Profil</a>.
         </p>
         <ol className="mt-10 relative border-l-2 border-border ml-2">

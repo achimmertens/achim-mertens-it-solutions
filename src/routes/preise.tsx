@@ -40,7 +40,7 @@ const pauschalen = [
       <>
         Installation eines OpenClaw-Agenten mit Telegram-Anbindung und KI-Integration –
         inkl. 5 Stunden Beratung, zzgl. Hostingkosten. Werden Sie Herr über Ihre interne
-        Datenflut und nutzen Sie KI-gestützte Automatisierung, ohne Ihre Daten an Dritte
+        Datenflut und nutzen Sie KI-gestützte Suche, ohne Ihre Daten an Dritte
         weiterzugeben. <a
           href="https://peakd.com/hive-121566/@achimmertens/openclaw-llm-wiki-und-meilisearch-erfahrungsbericht"
           target="_blank"
