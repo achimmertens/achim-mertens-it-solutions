@@ -31,35 +31,68 @@ type RawHivePost = Omit<HivePost, "json_metadata"> & {
   json_metadata: string | HivePost["json_metadata"];
 };
 
-async function fetchDokuPosts(): Promise<HivePost[]> {
+async function fetchPage(startAuthor?: string, startPermlink?: string): Promise<RawHivePost[]> {
+  const query: Record<string, unknown> = { tag: "achimmertens", limit: 20 };
+  if (startAuthor && startPermlink) {
+    query.start_author = startAuthor;
+    query.start_permlink = startPermlink;
+  }
   const res = await fetch("https://api.hive.blog", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       jsonrpc: "2.0",
       method: "condenser_api.get_discussions_by_blog",
-      params: [{ tag: "achimmertens", limit: 100 }],
+      params: [query],
       id: 1,
     }),
   });
   if (!res.ok) throw new Error("Hive API Fehler");
-  const data = (await res.json()) as { result: RawHivePost[] };
-  const parsed: HivePost[] = (data.result ?? []).map((p) => {
-    let meta: HivePost["json_metadata"] = {};
-    try {
-      meta =
-        typeof p.json_metadata === "string"
-          ? JSON.parse(p.json_metadata || "{}")
-          : p.json_metadata ?? {};
-    } catch {
-      meta = {};
+  const data = (await res.json()) as { result?: RawHivePost[]; error?: { message: string } };
+  if (data.error) throw new Error(data.error.message);
+  return data.result ?? [];
+}
+
+function parsePost(p: RawHivePost): HivePost {
+  let meta: HivePost["json_metadata"] = {};
+  try {
+    meta =
+      typeof p.json_metadata === "string"
+        ? JSON.parse(p.json_metadata || "{}")
+        : p.json_metadata ?? {};
+  } catch {
+    meta = {};
+  }
+  return { ...p, json_metadata: meta };
+}
+
+async function fetchDokuPosts(): Promise<HivePost[]> {
+  const collected: HivePost[] = [];
+  const seen = new Set<string>();
+  let startAuthor: string | undefined;
+  let startPermlink: string | undefined;
+  const MAX_PAGES = 10; // up to ~200 posts scanned
+  for (let i = 0; i < MAX_PAGES; i++) {
+    const page = await fetchPage(startAuthor, startPermlink);
+    if (page.length === 0) break;
+    // When paginating, first item duplicates the previous page's last item
+    const fresh = i === 0 ? page : page.slice(1);
+    for (const raw of fresh) {
+      const key = `${raw.author}/${raw.permlink}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const post = parsePost(raw);
+      if (post.author === "achimmertens" && (post.json_metadata?.tags ?? []).includes("doku")) {
+        collected.push(post);
+        if (collected.length >= 10) return collected;
+      }
     }
-    return { ...p, json_metadata: meta };
-  });
-  const filtered = parsed.filter(
-    (p) => p.author === "achimmertens" && (p.json_metadata?.tags ?? []).includes("doku"),
-  );
-  return filtered.slice(0, 10);
+    const last = page[page.length - 1];
+    if (!last || page.length < 20) break;
+    startAuthor = last.author;
+    startPermlink = last.permlink;
+  }
+  return collected;
 }
 
 function formatDate(iso: string) {
