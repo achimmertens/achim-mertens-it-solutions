@@ -1,48 +1,76 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calendar, ArrowRight } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { Calendar, ArrowRight, ExternalLink, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
       { title: "Blog · Achim Mertens IT Consulting" },
-      { name: "description", content: "Artikel und Gedanken zu IT-Beratung, IAM, Webentwicklung, KI und Automatisierung." },
+      { name: "description", content: "Aktuelle Artikel von Achim Mertens auf der Hive-Blockchain – zu IT, Doku, Anleitungen und mehr." },
     ],
   }),
   component: Blog,
 });
 
-const posts = [
-  {
-    slug: "iam-fuer-den-mittelstand",
-    date: "12. Mai 2026",
-    tag: "IAM",
-    title: "Identity & Access Management für den Mittelstand – pragmatisch starten",
-    excerpt: "Große IAM-Suiten sind teuer und träge. Wie ein KMU mit überschaubarem Aufwand in 90 Tagen einen sauberen IAM-Grundstein legt.",
-  },
-  {
-    slug: "openclaw-telegram-ki",
-    date: "28. April 2026",
-    tag: "KI & Automatisierung",
-    title: "OpenClaw-Agent mit Telegram & LLM in unter einer Woche",
-    excerpt: "Wie ich Kunden einen autonomen Chat-Agenten aufsetze, der echte Aufgaben übernimmt – und was dabei wirklich zählt.",
-  },
-  {
-    slug: "tanstack-start-im-praxistest",
-    date: "10. April 2026",
-    tag: "Webentwicklung",
-    title: "TanStack Start im Praxistest – das Ende von Next-only?",
-    excerpt: "Server Functions, file-based Routing, edge-ready. Ein Erfahrungsbericht aus einem realen Kundenprojekt.",
-  },
-  {
-    slug: "self-hosting-2026",
-    date: "27. März 2026",
-    tag: "Infrastruktur",
-    title: "Self-Hosting in 2026 – warum sich die eigene Hetzner-Box wieder lohnt",
-    excerpt: "Cloud ist nicht alternativlos. Eine ehrliche TCO-Betrachtung für kleinere Anwendungen.",
-  },
-];
+type HivePost = {
+  title: string;
+  author: string;
+  permlink: string;
+  created: string;
+  category: string;
+  url: string;
+  body: string;
+  json_metadata: {
+    tags?: string[];
+    image?: string[];
+    description?: string;
+  };
+};
+
+async function fetchDokuPosts(): Promise<HivePost[]> {
+  const res = await fetch("https://api.hive.blog", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      method: "bridge.get_account_posts",
+      params: { sort: "posts", account: "achimmertens", limit: 100 },
+      id: 1,
+    }),
+  });
+  if (!res.ok) throw new Error("Hive API Fehler");
+  const data = (await res.json()) as { result: HivePost[] };
+  const filtered = (data.result ?? []).filter((p) =>
+    (p.json_metadata?.tags ?? []).includes("doku"),
+  );
+  return filtered.slice(0, 10);
+}
+
+function formatDate(iso: string) {
+  const d = new Date(iso + "Z");
+  return d.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+}
+
+function excerptFrom(post: HivePost): string {
+  const desc = post.json_metadata?.description;
+  if (desc && desc.length > 10) return desc;
+  // Fallback: strip markdown/images from body
+  const text = post.body
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[#>*_`~-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return text.slice(0, 220) + (text.length > 220 ? "…" : "");
+}
 
 function Blog() {
+  const { data, isLoading, isError, refetch, isFetching } = useQuery({
+    queryKey: ["hive-doku-posts"],
+    queryFn: fetchDokuPosts,
+    staleTime: 1000 * 60 * 10,
+  });
+
   return (
     <>
       <section className="bg-primary text-primary-foreground">
@@ -50,29 +78,129 @@ function Blog() {
           <p className="text-accent text-sm font-semibold uppercase tracking-widest">Blog</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">Notizen aus der IT-Praxis</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80 text-lg">
-            Gedanken, Erfahrungen und Anleitungen zu IAM, Webentwicklung, KI und Infrastruktur.
+            Live von der Hive-Blockchain: meine neuesten Artikel mit dem Tag{" "}
+            <code className="px-1.5 py-0.5 bg-white/10 rounded text-accent">doku</code> von{" "}
+            <a
+              href="https://peakd.com/@achimmertens?filter=doku"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-accent underline-offset-4 hover:text-accent"
+            >
+              @achimmertens
+            </a>
+            .
           </p>
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16 grid gap-6">
-        {posts.map((p) => (
-          <article key={p.slug} className="group p-7 bg-card border border-border rounded-xl hover:border-accent transition-colors" style={{ boxShadow: "var(--shadow-soft)" }}>
-            <div className="flex items-center gap-3 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-1"><Calendar size={14} /> {p.date}</span>
-              <span className="px-2 py-0.5 bg-secondary rounded-full text-secondary-foreground font-medium">{p.tag}</span>
-            </div>
-            <h2 className="mt-3 text-2xl font-bold text-card-foreground group-hover:text-primary transition-colors">{p.title}</h2>
-            <p className="mt-2 text-muted-foreground">{p.excerpt}</p>
-            <span className="mt-4 inline-flex items-center gap-2 text-accent font-semibold">
-              Bald lesbar <ArrowRight size={16} />
-            </span>
-          </article>
-        ))}
-        <p className="text-center text-sm text-muted-foreground mt-4">
-          Weitere Artikel folgen regelmäßig. Sie möchten ein Thema vorschlagen?{" "}
-          <Link to="/kontakt" className="text-accent font-medium hover:underline">Schreiben Sie mir.</Link>
-        </p>
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+        {isLoading && (
+          <div className="flex items-center justify-center gap-3 text-muted-foreground py-20">
+            <Loader2 className="animate-spin" size={20} />
+            <span>Artikel werden von der Hive-Blockchain geladen…</span>
+          </div>
+        )}
+
+        {isError && (
+          <div className="text-center py-16 border border-border rounded-xl bg-card">
+            <p className="text-card-foreground font-medium">
+              Die Artikel konnten gerade nicht geladen werden.
+            </p>
+            <button
+              onClick={() => refetch()}
+              className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+            >
+              Erneut versuchen
+            </button>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Alternativ direkt auf{" "}
+              <a
+                href="https://peakd.com/@achimmertens?filter=doku"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline"
+              >
+                peakd.com
+              </a>{" "}
+              lesen.
+            </p>
+          </div>
+        )}
+
+        {data && data.length === 0 && (
+          <p className="text-center text-muted-foreground py-16">
+            Aktuell keine Artikel mit dem Tag „doku" gefunden.
+          </p>
+        )}
+
+        <div className="grid gap-6">
+          {data?.map((p) => {
+            const img = p.json_metadata?.image?.[0];
+            const href = `https://peakd.com${p.url}`;
+            return (
+              <article
+                key={p.permlink}
+                className="group overflow-hidden bg-card border border-border rounded-xl hover:border-accent transition-colors"
+                style={{ boxShadow: "var(--shadow-soft)" }}
+              >
+                <a href={href} target="_blank" rel="noopener noreferrer" className="grid md:grid-cols-[220px_1fr] gap-0">
+                  {img && (
+                    <div className="aspect-video md:aspect-auto md:h-full bg-muted overflow-hidden">
+                      <img
+                        src={img}
+                        alt={p.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                      <span className="inline-flex items-center gap-1">
+                        <Calendar size={14} /> {formatDate(p.created)}
+                      </span>
+                      {(p.json_metadata?.tags ?? []).slice(0, 3).map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 bg-secondary rounded-full text-secondary-foreground font-medium"
+                        >
+                          #{t}
+                        </span>
+                      ))}
+                    </div>
+                    <h2 className="mt-3 text-xl md:text-2xl font-bold text-card-foreground group-hover:text-primary transition-colors">
+                      {p.title}
+                    </h2>
+                    <p className="mt-2 text-muted-foreground line-clamp-3">{excerptFrom(p)}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-accent font-semibold">
+                      Auf PeakD lesen <ExternalLink size={16} />
+                    </span>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+
+        {data && data.length > 0 && (
+          <div className="mt-10 flex flex-col items-center gap-3">
+            <a
+              href="https://peakd.com/@achimmertens?filter=doku"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+            >
+              Alle Artikel auf PeakD ansehen <ArrowRight size={16} />
+            </a>
+            <p className="text-sm text-muted-foreground">
+              Themenwunsch?{" "}
+              <Link to="/kontakt" className="text-accent font-medium hover:underline">
+                Schreiben Sie mir.
+              </Link>{" "}
+              {isFetching && <span className="ml-2 opacity-60">(aktualisiere…)</span>}
+            </p>
+          </div>
+        )}
       </section>
     </>
   );
