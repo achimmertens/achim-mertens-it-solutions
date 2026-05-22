@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Github, MapPin } from "lucide-react";
-import profile from "@/assets/profile.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { Calendar, ExternalLink, Loader2 } from "lucide-react";
 import dtLogo from "@/assets/deutsche-telekom-logo.png";
 
 export const Route = createFileRoute("/ueber-mich")({
@@ -100,23 +100,135 @@ const cv = [
 
 const skills = ["IAM", "SSO / Federation", "TypeScript & React", "Node.js", "Python", "Java", "OpenClaw", "LLM / RAG", "AWS", "Hetzner Cloud", "Linux", "SQL", "Tailwind", "Telegram Bots"];
 
+type HivePost = {
+  title: string;
+  permlink: string;
+  author: string;
+  created: string;
+  body: string;
+  url: string;
+  json_metadata: {
+    tags?: string[];
+    description?: string;
+    image?: string[];
+  };
+};
+
+type RawHivePost = Omit<HivePost, "json_metadata"> & {
+  json_metadata: string | HivePost["json_metadata"];
+};
+
+async function fetchPage(startAuthor?: string, startPermlink?: string): Promise<RawHivePost[]> {
+  const query: Record<string, unknown> = { tag: "achimmertens", limit: 10 };
+  if (startAuthor && startPermlink) {
+    query.start_author = startAuthor;
+    query.start_permlink = startPermlink;
+  }
+  const res = await fetch("https://api.hive.blog", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      method: "condenser_api.get_discussions_by_blog",
+      params: [query],
+      id: 1,
+    }),
+  });
+  if (!res.ok) throw new Error("Hive API Fehler");
+  const data = (await res.json()) as { result?: RawHivePost[]; error?: { message: string } };
+  if (data.error) throw new Error(data.error.message);
+  return data.result ?? [];
+}
+
+function parsePost(p: RawHivePost): HivePost {
+  let meta: HivePost["json_metadata"] = {};
+  try {
+    meta =
+      typeof p.json_metadata === "string"
+        ? JSON.parse(p.json_metadata || "{}")
+        : p.json_metadata ?? {};
+  } catch {
+    meta = {};
+  }
+  return { ...p, json_metadata: meta };
+}
+
+async function fetchDiaryPosts(): Promise<HivePost[]> {
+  const collected: HivePost[] = [];
+  const seen = new Set<string>();
+  let startAuthor: string | undefined;
+  let startPermlink: string | undefined;
+  const MAX_PAGES = 5;
+  for (let i = 0; i < MAX_PAGES; i++) {
+    const page = await fetchPage(startAuthor, startPermlink);
+    if (page.length === 0) break;
+    const fresh = i === 0 ? page : page.slice(1);
+    for (const raw of fresh) {
+      const key = `${raw.author}/${raw.permlink}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const post = parsePost(raw);
+      if (post.author === "achimmertens" && (post.json_metadata?.tags ?? []).includes("diary")) {
+        collected.push(post);
+        if (collected.length >= 5) return collected;
+      }
+    }
+    const last = page[page.length - 1];
+    if (!last || page.length < 10) break;
+    startAuthor = last.author;
+    startPermlink = last.permlink;
+  }
+  return collected;
+}
+
+function formatDate(iso: string) {
+  const d = new Date(iso + "Z");
+  return d.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+}
+
+function excerptFrom(post: HivePost) {
+  const desc = post.json_metadata?.description;
+  if (desc && desc.length > 10) return desc;
+  const text = post.body
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[#>*_`~-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!text) return "Keine Beschreibung verfügbar.";
+  return text.slice(0, 180) + (text.length > 180 ? "…" : "");
+}
+
+function extractCoverImage(post: HivePost) {
+  const metaImage = post.json_metadata?.image?.[0];
+  if (metaImage) return metaImage;
+  const match = post.body.match(/!\[[^\]]*\]\((https?:\/\/[^)]+)\)/);
+  return match ? match[1] : undefined;
+}
+
 function UeberMich() {
+  const { data: diaryPosts, isLoading, isError } = useQuery({
+    queryKey: ["hive-diary-posts"],
+    queryFn: fetchDiaryPosts,
+    staleTime: 1000 * 60 * 10,
+  });
+
   return (
     <>
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-6">
-  <h2 className="text-3xl font-bold text-primary">Erfahrung</h2>
-  <div className="mt-4 space-y-6">
-    <div className="experience-entry">
-      <img src={dtLogo} alt="Deutsche Telekom Logo" className="h-12 w-12 mr-4" />
-      <div>
-        <p className="text-sm font-bold">Deutsche Telekom</p>
-        <p className="text-muted-foreground">Vollzeit · Seit 1998</p>
-      </div>
-    </div>
-    {/* Add other entries similarly */}
-    {/* Repeat for each experience block */}
-  </div>
-</section>
+        <h2 className="text-3xl font-bold text-primary">Erfahrung</h2>
+        <div className="mt-4 space-y-6">
+          <div className="experience-entry flex items-center gap-4">
+            <img src={dtLogo} alt="Deutsche Telekom Logo" className="h-12 w-12" />
+            <div>
+              <p className="text-sm font-bold">Deutsche Telekom</p>
+              <p className="text-muted-foreground">Vollzeit · Seit 1998</p>
+            </div>
+          </div>
+          {/* Add other entries similarly */}
+          {/* Repeat for each experience block */}
+        </div>
+      </section>
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-16">
         <h2 className="text-3xl font-bold text-primary">Lebenslauf</h2>
         <p className="mt-2 text-muted-foreground">
@@ -144,6 +256,80 @@ function UeberMich() {
               <span key={s} className="px-3 py-1.5 bg-secondary text-secondary-foreground rounded-full text-sm border border-border">{s}</span>
             ))}
           </div>
+        </div>
+
+        <div className="mt-10">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+            <h3 className="text-xl font-bold text-primary">Letzte Blogeinträge</h3>
+            <a
+              href="https://peakd.com/@achimmertens"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent font-semibold hover:underline flex items-center gap-1"
+            >
+              Blog auf PeakD ansehen <ExternalLink size={16} />
+            </a>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Die ältere Website ist weiterhin unter <a className="text-accent underline" href="https://greensniper.wordpress.com" target="_blank" rel="noreferrer">greensniper.wordpress.com</a> erreichbar.
+          </p>
+
+          {isLoading && (
+            <div className="mt-6 flex items-center justify-center gap-3 text-muted-foreground">
+              <ExternalLink size={16} className="animate-bounce" />
+              <span>Blogeinträge werden geladen…</span>
+            </div>
+          )}
+
+          {isError && (
+            <p className="mt-6 text-sm text-error-foreground">Die Blogeinträge konnten nicht geladen werden.</p>
+          )}
+
+          {diaryPosts && diaryPosts.length > 0 && (
+            <div className="mt-6 grid gap-6">
+              {diaryPosts.map((post) => {
+                const img = extractCoverImage(post);
+                const href = `https://peakd.com${post.url}`;
+                return (
+                  <article
+                    key={post.permlink}
+                    className="group overflow-hidden border border-border rounded-xl bg-card hover:border-accent transition-colors"
+                    style={{ boxShadow: "var(--shadow-soft)" }}
+                  >
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="grid md:grid-cols-[220px_1fr] gap-0">
+                      {img && (
+                        <div className="aspect-video md:aspect-auto md:h-full bg-muted overflow-hidden">
+                          <img
+                            src={img}
+                            alt={post.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                          <span className="inline-flex items-center gap-1">
+                            <Calendar size={14} /> {formatDate(post.created)}
+                          </span>
+                          <span className="px-2 py-0.5 bg-secondary rounded-full text-secondary-foreground text-[10px] uppercase tracking-widest">
+                            #diary
+                          </span>
+                        </div>
+                        <h4 className="mt-3 text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {post.title}
+                        </h4>
+                        <p className="mt-2 text-muted-foreground line-clamp-3">{excerptFrom(post)}</p>
+                        <span className="mt-4 inline-flex items-center gap-2 text-accent font-semibold">
+                          Auf PeakD lesen <ExternalLink size={16} />
+                        </span>
+                      </div>
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
     </>

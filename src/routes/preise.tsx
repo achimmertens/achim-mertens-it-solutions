@@ -13,10 +13,10 @@ export const Route = createFileRoute("/preise")({
 
 const stunden = [
   { label: "Erstes Kennenlernen", price: "0 €", note: "Die erste \"Stunde\" Beratung ist kostenlos. Wir entscheiden gemeinsam, ab wann abgerechnet wird." },
-  { label: "Online-Kommunikation", price: "80 € / h" },
+  { label: "Online-Kommunikation", price: "80 € / h", note: "Chat, Videomeetings, Anrufe – alle Live-Kommunikationswege außer Vor-Ort-Termine." },
   { label: "Vor-Ort-Anwesenheit", price: "100 € / h" },
-  { label: "Programmierung, Wartung, offline Kommunikation …", price: "60 € / h" },
-  { label: "Fahrtkosten", price: "0,50 € / km" },
+  { label: "Programmierung, Wartung, offline Kommunikation …", price: "60 € / h", note: "Alle Tätigkeiten, die ich ungestört von zu Hause aus erledigen kann." },
+  { label: "Fahrtkosten", price: "0,50 € / km", note: "gefahrene Kilometer" },
   { label: "Anruf", price: "15 € / Anruf", note: "zzgl. Arbeitszeit" },
 ];
 

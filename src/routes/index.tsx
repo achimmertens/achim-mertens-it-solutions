@@ -34,7 +34,7 @@ function Home() {
               IT Consulting · Eschweiler
             </span>
             <h1 className="mt-5 text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
-              Individuelle und pragmatische Unterstützung Ihrer IT
+              Ihre individuelle und pragmatische IT-Unterstützung
             </h1>
             <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl">
               Ich bin Achim Mertens – freier IT-Consultant, Programmierer und Webdesigner. Seit über 25 Jahren arbeite ich als Angestellter der Telekom im Bereich Betrieb von Identity & Access Management sowie Softwareentwicklung. 
