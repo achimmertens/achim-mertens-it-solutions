@@ -37,7 +37,10 @@ function Home() {
               Individuelle und pragmatische Unterstützung Ihrer IT
             </h1>
             <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl">
-              Ich bin Achim Mertens – freier IT-Consultant, Programmierer und Webdesigner. Seit über 25 Jahren arbeite ich als Angestellter der Telekom im Bereich Betrieb von Identity & Access Management sowie Softwareentwicklung. Daneben möchte ich meine Erfahrungen weitergeben und bei kleinen IT-Projekten unterstützen.
+              Ich bin Achim Mertens – freier IT-Consultant, Programmierer und Webdesigner. Seit über 25 Jahren arbeite ich als Angestellter der Telekom im Bereich Betrieb von Identity & Access Management sowie Softwareentwicklung. 
+            </p>
+            <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl">
+              Diese Erfahrungen möchte ich an Sie weitergeben und Sie bei kleinen IT-Projekten unterstützen.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/kontakt" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-md font-semibold hover:opacity-90 transition">
