@@ -27,21 +27,37 @@ type HivePost = {
   };
 };
 
+type RawHivePost = Omit<HivePost, "json_metadata"> & {
+  json_metadata: string | HivePost["json_metadata"];
+};
+
 async function fetchDokuPosts(): Promise<HivePost[]> {
   const res = await fetch("https://api.hive.blog", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       jsonrpc: "2.0",
-      method: "bridge.get_account_posts",
-      params: { sort: "posts", account: "achimmertens", limit: 100 },
+      method: "condenser_api.get_discussions_by_blog",
+      params: [{ tag: "achimmertens", limit: 100 }],
       id: 1,
     }),
   });
   if (!res.ok) throw new Error("Hive API Fehler");
-  const data = (await res.json()) as { result: HivePost[] };
-  const filtered = (data.result ?? []).filter((p) =>
-    (p.json_metadata?.tags ?? []).includes("doku"),
+  const data = (await res.json()) as { result: RawHivePost[] };
+  const parsed: HivePost[] = (data.result ?? []).map((p) => {
+    let meta: HivePost["json_metadata"] = {};
+    try {
+      meta =
+        typeof p.json_metadata === "string"
+          ? JSON.parse(p.json_metadata || "{}")
+          : p.json_metadata ?? {};
+    } catch {
+      meta = {};
+    }
+    return { ...p, json_metadata: meta };
+  });
+  const filtered = parsed.filter(
+    (p) => p.author === "achimmertens" && (p.json_metadata?.tags ?? []).includes("doku"),
   );
   return filtered.slice(0, 10);
 }
