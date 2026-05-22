@@ -115,6 +115,12 @@ function Home() {
                   <ArrowRight size={18} />
                 </a>
               </li>
+              <li>
+                <Link to="/" className="flex justify-between items-center p-4 rounded-lg bg-secondary hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <span className="font-medium">Diese Webseite hier</span>
+                  <ArrowRight size={18} />
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

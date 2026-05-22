@@ -125,9 +125,9 @@ function Blog() {
       <section className="bg-primary text-primary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-20">
           <p className="text-accent text-sm font-semibold uppercase tracking-widest">Blog</p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold">Notizen aus der IT-Praxis</h1>
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold">Meine Dokumentation aus der IT-Praxis</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80 text-lg">
-            Live von der Hive-Blockchain: meine neuesten Artikel mit dem Tag{" "}
+            Live von der Hive-Blockchain: meine neuesten Artikel mit dem Hashtag{" "}
             <code className="px-1.5 py-0.5 bg-white/10 rounded text-accent">doku</code> von{" "}
             <a
               href="https://peakd.com/@achimmertens?filter=doku"
