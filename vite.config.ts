@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  base: '/Achim-Mertens-IT-Solutions/',  // Wichtig!
   plugins: [
     tsconfigPaths(),
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
