@@ -83,6 +83,10 @@ function Kontakt() {
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-accent px-4 py-2.5 rounded-md font-medium transition">
               <span className="font-black">Ⓗ</span> Hive Blockchain
             </a>
+            <a href="https://www.youtube.com/achimmertens" target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-accent px-4 py-2.5 rounded-md font-medium transition">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg> YouTube
+            </a>
           </div>
         </div>
       </section>
