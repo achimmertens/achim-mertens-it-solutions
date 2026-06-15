@@ -52,9 +52,9 @@
     position: relative;
     z-index: 1;
   }
-  .card-header svg.logo {
-    width: 12mm;
-    height: 12mm;
+  .card-header img {
+    width: 11mm;
+    height: auto;
     flex-shrink: 0;
     display: block;
   }
@@ -187,11 +187,7 @@
 <div id="card-template">
   <div class="card">
     <div class="card-header">
-      <!-- Inline-SVG-Logo: hexagonales "A", robust ohne externe Gradient-IDs -->
-      <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.85)" stroke-width="6" stroke-linejoin="round"/>
-        <text x="50" y="72" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="56" font-weight="bold" font-family="sans-serif">A</text>
-      </svg>
+      <img src="logo.png" alt="Achim Mertens Logo" onerror="this.style.display='none'">
       <div class="title-block">
         <div class="name">Achim Mertens</div>
         <div class="subtitle">IT Consulting · Eschweiler</div>

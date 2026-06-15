@@ -30,6 +30,7 @@ jobs:
         run: |
           cp dist/index.html dist/404.html
           cp visitenkarte-it.html dist/
+          cp logo.png dist/
           echo "it.amertens.me" > dist/CNAME
 
       - name: Deploy to gh-pages branch
