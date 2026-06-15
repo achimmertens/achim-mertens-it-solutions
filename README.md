@@ -38,7 +38,7 @@ Vor dem Deployment kannst du den Build lokal testen. Dieses Projekt verwendet Ta
   Alternativ:
 
   ```bash
-  node dist/server/index.js
+  npx http-serve dist
   ```
 
 ➡️ Dann im Browser `http://localhost:4173` öffnen und testen. Ein statischer HTTP-Server auf `dist/` funktioniert nicht, weil `index.html` fehlt.
