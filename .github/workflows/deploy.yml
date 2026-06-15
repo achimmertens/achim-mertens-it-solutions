@@ -26,9 +26,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy 404.html and CNAME
+      - name: Copy 404.html, CNAME and visitenkarte
         run: |
           cp dist/index.html dist/404.html
+          cp visitenkarte-it.html dist/
           echo "it.amertens.me" > dist/CNAME
 
       - name: Deploy to gh-pages branch

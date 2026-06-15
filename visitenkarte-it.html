@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Visitenkarte – Achim Mertens IT Consulting</title>
 <style>
-  /* ═══ Druck-Setup ═══ */
   @page { size: 85mm 55mm; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,15 +17,12 @@
     padding: 20px 0;
   }
 
-  /* ═══ Einzelkarte ═══ */
   .card {
     width: 85mm;
     height: 55mm;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0,0,0,.12);
-
-    /* Design-System: primary → gradient wie Webseite */
     background: linear-gradient(135deg,
       oklch(0.25 0.08 255)   0%,
       oklch(0.35 0.12 235)  50%,
@@ -37,14 +33,13 @@
     flex-direction: column;
   }
 
-  /* Dots-Overlay (wie Hero auf it.amertens.me) */
   .card::before {
     content: "";
     position: absolute;
     inset: 0;
     opacity: 0.08;
     background-image: radial-gradient(circle at 20% 20%, white 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-size: 20px 20px;
     pointer-events: none;
   }
 
@@ -53,23 +48,24 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5.5mm 5mm 0 5mm;
+    padding: 5mm 5mm 0 5mm;
     position: relative;
     z-index: 1;
   }
-  .card-header img {
-    width: 11mm;
-    height: auto;
+  .card-header svg.logo {
+    width: 12mm;
+    height: 12mm;
     flex-shrink: 0;
+    display: block;
   }
-  .card-header .title-block { line-height: 1.15; }
+  .card-header .title-block { line-height: 1.1; }
   .card-header .name {
-    font-size: 16pt;
+    font-size: 20pt;
     font-weight: 700;
     letter-spacing: -0.015em;
   }
   .card-header .subtitle {
-    font-size: 8.5pt;
+    font-size: 9pt;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -87,83 +83,66 @@
     position: relative;
     z-index: 1;
   }
-
-  /* ── Kontakt ── */
   .contact {
     display: flex;
     flex-direction: column;
-    gap: 0.6mm;
+    gap: 0.8mm;
   }
   .contact-item {
     display: flex;
     align-items: center;
     gap: 2mm;
-    font-size: 8pt;
+    font-size: 9pt;
     opacity: 0.95;
   }
   .contact-item .icon {
-    width: 3.5mm;
+    width: 4mm;
     text-align: center;
     flex-shrink: 0;
-    font-size: 9pt;
+    font-size: 10pt;
     opacity: 0.5;
   }
 
   /* ── Footer ── */
   .card-footer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1mm;
     padding: 0 5mm 3.5mm 5mm;
     position: relative;
     z-index: 1;
   }
   .card-footer .url {
-    font-size: 9pt;
+    font-size: 10pt;
     font-weight: 600;
     opacity: 0.95;
   }
   .card-footer .social {
     display: flex;
-    gap: 1.5mm;
+    flex-direction: column;
+    gap: 0.3mm;
   }
   .card-footer .social a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8mm 1.5mm;
-    border-radius: 1mm;
-    background: rgba(255,255,255,0.10);
-    color: #fff;
+    color: rgba(255,255,255,0.85);
     text-decoration: none;
-    font-size: 7pt;
-    font-weight: 700;
+    font-size: 6.5pt;
+    font-weight: 400;
+    opacity: 0.8;
+    transition: opacity 0.15s;
     white-space: nowrap;
-    transition: background 0.15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .card-footer .social a:hover {
-    background: rgba(255,255,255,0.20);
+    opacity: 1;
   }
 
-  /* ── Inline-SVG-Fallback für Logo ── */
-  .logo-fallback {
-    display: none;
-    width: 11mm;
-    height: 11mm;
-    flex-shrink: 0;
-  }
-  .card-header img[src]:not([src=""]) + .logo-fallback { display: none; }
-  .card-header img[src=""] + .logo-fallback,
-  .card-header img:not([src]) + .logo-fallback { display: block; }
-
-  /* ═══ Druckansicht ═══ */
   @media print {
     body { background: none; padding: 0; }
     .card { box-shadow: none; page-break-after: always; }
     .info-bar { display: none; }
   }
 
-  /* ═══ Multi-Karten-Bogen (Screen) ═══ */
   #multi-view {
     display: grid;
     grid-template-columns: repeat(3, 85mm);
@@ -195,7 +174,6 @@
   }
   .info-bar strong { color: #111; }
 
-  /* ═══ Template (unsichtbar, für JS-Klon) ═══ */
   #card-template { display: none; }
 </style>
 </head>
@@ -206,23 +184,20 @@
   Einzelansicht unten · Zum Drucken: <strong>Strg+P</strong> → 9 Karten pro A4-Bogen
 </div>
 
-<!-- ─── Template ─── -->
 <div id="card-template">
   <div class="card">
     <div class="card-header">
-      <img src="src/assets/logo.png" alt="Logo" onerror="this.style.display='none'">
-      <!-- Inline-SVG-Fallback: hexagonales "A" -->
-      <svg class="logo-fallback" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <!-- Inline-SVG-Logo: hexagonales "A" -->
+      <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+          <linearGradient id="it-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.95"/>
             <stop offset="100%" stop-color="#fff" stop-opacity="0.5"/>
           </linearGradient>
         </defs>
-        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="url(#lg)" stroke-width="6"/>
-        <text x="50" y="72" text-anchor="middle" fill="url(#lg)" font-size="56" font-weight="bold" font-family="sans-serif">A</text>
+        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="url(#it-logo-grad)" stroke-width="6" stroke-linejoin="round"/>
+        <text x="50" y="72" text-anchor="middle" fill="url(#it-logo-grad)" font-size="56" font-weight="bold" font-family="sans-serif">A</text>
       </svg>
-      <script>(function(){var i=document.currentScript.previousElementSibling.previousElementSibling;if(!i||!i.complete||i.naturalWidth===0){var s=i.nextElementSibling;if(s&&s.classList.contains('logo-fallback'))s.style.display='block';}})();</script>
       <div class="title-block">
         <div class="name">Achim Mertens</div>
         <div class="subtitle">IT Consulting · Eschweiler</div>
@@ -245,29 +220,22 @@
       </div>
     </div>
     <div class="card-footer">
-      <span class="url">it.amertens.me</span>
+      <div class="url">it.amertens.me</div>
       <div class="social">
-        <a href="https://linkedin.com/in/achim-mertens-97b0" title="LinkedIn">LinkedIn</a>
-        <a href="https://github.com/achimmertens" title="GitHub">GitHub</a>
+        <a href="https://linkedin.com/in/achim-mertens-97b0" title="LinkedIn">linkedin.com/in/achim-mertens-97b0</a>
+        <a href="https://github.com/achimmertens" title="GitHub">github.com/achimmertens</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ─── Einzelansicht ─── -->
 <div id="single-view"></div>
-
-<!-- ─── 9er-Bogen (wird per JS befüllt) ─── -->
 <div id="multi-view"></div>
 
 <script>
   (function() {
     var tpl = document.getElementById('card-template').innerHTML;
-
-    // Einzelansicht
     document.getElementById('single-view').innerHTML = tpl;
-
-    // 9er-Bogen
     var mw = document.getElementById('multi-view');
     for (var i = 0; i < 9; i++) {
       mw.innerHTML += tpl;
