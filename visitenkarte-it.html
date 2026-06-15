@@ -187,16 +187,10 @@
 <div id="card-template">
   <div class="card">
     <div class="card-header">
-      <!-- Inline-SVG-Logo: hexagonales "A" -->
+      <!-- Inline-SVG-Logo: hexagonales "A", robust ohne externe Gradient-IDs -->
       <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="it-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fff" stop-opacity="0.95"/>
-            <stop offset="100%" stop-color="#fff" stop-opacity="0.5"/>
-          </linearGradient>
-        </defs>
-        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="url(#it-logo-grad)" stroke-width="6" stroke-linejoin="round"/>
-        <text x="50" y="72" text-anchor="middle" fill="url(#it-logo-grad)" font-size="56" font-weight="bold" font-family="sans-serif">A</text>
+        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.85)" stroke-width="6" stroke-linejoin="round"/>
+        <text x="50" y="72" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="56" font-weight="bold" font-family="sans-serif">A</text>
       </svg>
       <div class="title-block">
         <div class="name">Achim Mertens</div>
