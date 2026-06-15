@@ -105,9 +105,6 @@
 
   /* ── Footer ── */
   .card-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 1mm;
     padding: 0 5mm 3.5mm 5mm;
     position: relative;
     z-index: 1;
@@ -116,25 +113,6 @@
     font-size: 10pt;
     font-weight: 600;
     opacity: 0.95;
-  }
-  .card-footer .social {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3mm;
-  }
-  .card-footer .social a {
-    color: rgba(255,255,255,0.85);
-    text-decoration: none;
-    font-size: 6.5pt;
-    font-weight: 400;
-    opacity: 0.8;
-    transition: opacity 0.15s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .card-footer .social a:hover {
-    opacity: 1;
   }
 
   @media print {
@@ -210,11 +188,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="url">https://it.amertens.me</div>
-      <div class="social">
-        <a href="https://linkedin.com/in/achim-mertens-97b0" title="LinkedIn">https://linkedin.com/in/achim-mertens-97b0</a>
-        <a href="https://github.com/achimmertens" title="GitHub">https://github.com/achimmertens</a>
-      </div>
+      <span class="url">https://it.amertens.me</span>
     </div>
   </div>
 </div>
