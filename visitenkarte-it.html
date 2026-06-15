@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Visitenkarte – Achim Mertens IT Consulting</title>
+<style>
+  /* ═══ Druck-Setup ═══ */
+  @page { size: 85mm 55mm; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 20px 0;
+  }
+
+  /* ═══ Einzelkarte ═══ */
+  .card {
+    width: 85mm;
+    height: 55mm;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.12);
+
+    /* Design-System: primary → gradient wie Webseite */
+    background: linear-gradient(135deg,
+      oklch(0.25 0.08 255)   0%,
+      oklch(0.35 0.12 235)  50%,
+      oklch(0.50 0.14 210) 100%
+    );
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Dots-Overlay (wie Hero auf it.amertens.me) */
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image: radial-gradient(circle at 20% 20%, white 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  /* ── Header ── */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6mm 5mm 0 5mm;
+    position: relative;
+    z-index: 1;
+  }
+  .card-header img {
+    width: 10mm;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .card-header .title-block { line-height: 1.15; }
+  .card-header .name {
+    font-size: 13pt;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  .card-header .subtitle {
+    font-size: 7pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    margin-top: 0.5mm;
+  }
+
+  /* ── Body ── */
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5mm;
+    position: relative;
+    z-index: 1;
+  }
+  .card-body .tagline {
+    font-size: 6.5pt;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-bottom: 1.5mm;
+    line-height: 1.3;
+  }
+
+  /* ── Kontakt ── */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8mm;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    font-size: 6.5pt;
+    opacity: 0.9;
+  }
+  .contact-item .icon {
+    width: 3mm;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 6.5pt;
+    opacity: 0.5;
+  }
+
+  /* ── Footer ── */
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5mm 3.5mm 5mm;
+    position: relative;
+    z-index: 1;
+  }
+  .card-footer .url {
+    font-size: 7pt;
+    font-weight: 600;
+    opacity: 0.95;
+  }
+  .card-footer .social {
+    display: flex;
+    gap: 2mm;
+  }
+  .card-footer .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.5mm;
+    height: 4.5mm;
+    border-radius: 1mm;
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+    text-decoration: none;
+    font-size: 5pt;
+    font-weight: 700;
+  }
+
+  /* ═══ Druckansicht ═══ */
+  @media print {
+    body { background: none; padding: 0; }
+    .card { box-shadow: none; page-break-after: always; }
+    .info-bar { display: none; }
+  }
+
+  /* ═══ Multi-Karten-Bogen (Screen) ═══ */
+  #multi-view {
+    display: grid;
+    grid-template-columns: repeat(3, 85mm);
+    grid-template-rows: repeat(3, 55mm);
+    gap: 0;
+    margin: 10px auto;
+    background: white;
+  }
+  #multi-view .card { box-shadow: none; border: 0.1mm solid #ddd; }
+  #multi-view .card + .card { border-left: none; }
+  @media print {
+    #single-view { display: none; }
+    #multi-view { display: grid !important; margin: 0; }
+  }
+  @media screen {
+    #multi-view { display: none; }
+  }
+
+  .info-bar {
+    font: 11px/1.4 sans-serif;
+    color: #555;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px auto;
+    max-width: 500px;
+    text-align: center;
+  }
+  .info-bar strong { color: #111; }
+
+  /* ═══ Template (unsichtbar, für JS-Klon) ═══ */
+  #card-template { display: none; }
+</style>
+</head>
+<body>
+
+<div class="info-bar">
+  <strong>🖨️ Visitenkarte 85×55mm</strong><br>
+  Einzelansicht unten · Zum Drucken: <strong>Strg+P</strong> → 9 Karten pro A4-Bogen
+</div>
+
+<!-- ─── Template ─── -->
+<div id="card-template">
+  <div class="card">
+    <div class="card-header">
+      <img src="src/assets/logo.png" alt="Logo" onerror="this.style.display='none'">
+      <div class="title-block">
+        <div class="name">Achim Mertens</div>
+        <div class="subtitle">IT Consulting · Eschweiler</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="tagline">
+        IT-Beratung · Softwareentwicklung · Webdesign · KI &amp; Automatisierung
+      </div>
+      <div class="contact">
+        <div class="contact-item">
+          <span class="icon">📍</span>
+          <span>Vennstr. 31, 52249 Eschweiler</span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">📞</span>
+          <span>+49 1517 4412216</span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">✉️</span>
+          <span>achim_mertens@gmx.de</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="url">it.amertens.me</span>
+      <div class="social">
+        <a href="https://linkedin.com/in/achim-mertens-97b0" title="LinkedIn">in</a>
+        <a href="https://github.com/achimmertens" title="GitHub">GH</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Einzelansicht ─── -->
+<div id="single-view"></div>
+
+<!-- ─── 9er-Bogen (wird per JS befüllt) ─── -->
+<div id="multi-view"></div>
+
+<script>
+  (function() {
+    var tpl = document.getElementById('card-template').innerHTML;
+
+    // Einzelansicht
+    document.getElementById('single-view').innerHTML = tpl;
+
+    // 9er-Bogen
+    var mw = document.getElementById('multi-view');
+    for (var i = 0; i < 9; i++) {
+      mw.innerHTML += tpl;
+    }
+  })();
+</script>
+
+</body>
+</html>
