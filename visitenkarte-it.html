@@ -52,24 +52,24 @@
   .card-header {
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 6mm 5mm 0 5mm;
+    gap: 10px;
+    padding: 5.5mm 5mm 0 5mm;
     position: relative;
     z-index: 1;
   }
   .card-header img {
-    width: 10mm;
+    width: 11mm;
     height: auto;
     flex-shrink: 0;
   }
   .card-header .title-block { line-height: 1.15; }
   .card-header .name {
-    font-size: 13pt;
+    font-size: 16pt;
     font-weight: 700;
     letter-spacing: -0.015em;
   }
   .card-header .subtitle {
-    font-size: 7pt;
+    font-size: 8.5pt;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -87,32 +87,25 @@
     position: relative;
     z-index: 1;
   }
-  .card-body .tagline {
-    font-size: 6.5pt;
-    font-weight: 400;
-    opacity: 0.7;
-    margin-bottom: 1.5mm;
-    line-height: 1.3;
-  }
 
   /* ── Kontakt ── */
   .contact {
     display: flex;
     flex-direction: column;
-    gap: 0.8mm;
+    gap: 0.6mm;
   }
   .contact-item {
     display: flex;
     align-items: center;
     gap: 2mm;
-    font-size: 6.5pt;
-    opacity: 0.9;
+    font-size: 8pt;
+    opacity: 0.95;
   }
   .contact-item .icon {
-    width: 3mm;
+    width: 3.5mm;
     text-align: center;
     flex-shrink: 0;
-    font-size: 6.5pt;
+    font-size: 9pt;
     opacity: 0.5;
   }
 
@@ -126,27 +119,42 @@
     z-index: 1;
   }
   .card-footer .url {
-    font-size: 7pt;
+    font-size: 9pt;
     font-weight: 600;
     opacity: 0.95;
   }
   .card-footer .social {
     display: flex;
-    gap: 2mm;
+    gap: 1.5mm;
   }
   .card-footer .social a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 4.5mm;
-    height: 4.5mm;
+    padding: 0.8mm 1.5mm;
     border-radius: 1mm;
     background: rgba(255,255,255,0.10);
     color: #fff;
     text-decoration: none;
-    font-size: 5pt;
+    font-size: 7pt;
     font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.15s;
   }
+  .card-footer .social a:hover {
+    background: rgba(255,255,255,0.20);
+  }
+
+  /* ── Inline-SVG-Fallback für Logo ── */
+  .logo-fallback {
+    display: none;
+    width: 11mm;
+    height: 11mm;
+    flex-shrink: 0;
+  }
+  .card-header img[src]:not([src=""]) + .logo-fallback { display: none; }
+  .card-header img[src=""] + .logo-fallback,
+  .card-header img:not([src]) + .logo-fallback { display: block; }
 
   /* ═══ Druckansicht ═══ */
   @media print {
@@ -194,7 +202,7 @@
 <body>
 
 <div class="info-bar">
-  <strong>🖨️ Visitenkarte 85×55mm</strong><br>
+  <strong>🖨️ Visitenkarte 85×55mm – IT Consulting</strong><br>
   Einzelansicht unten · Zum Drucken: <strong>Strg+P</strong> → 9 Karten pro A4-Bogen
 </div>
 
@@ -203,15 +211,24 @@
   <div class="card">
     <div class="card-header">
       <img src="src/assets/logo.png" alt="Logo" onerror="this.style.display='none'">
+      <!-- Inline-SVG-Fallback: hexagonales "A" -->
+      <svg class="logo-fallback" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <defs>
+          <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0.5"/>
+          </linearGradient>
+        </defs>
+        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="url(#lg)" stroke-width="6"/>
+        <text x="50" y="72" text-anchor="middle" fill="url(#lg)" font-size="56" font-weight="bold" font-family="sans-serif">A</text>
+      </svg>
+      <script>(function(){var i=document.currentScript.previousElementSibling.previousElementSibling;if(!i||!i.complete||i.naturalWidth===0){var s=i.nextElementSibling;if(s&&s.classList.contains('logo-fallback'))s.style.display='block';}})();</script>
       <div class="title-block">
         <div class="name">Achim Mertens</div>
         <div class="subtitle">IT Consulting · Eschweiler</div>
       </div>
     </div>
     <div class="card-body">
-      <div class="tagline">
-        IT-Beratung · Softwareentwicklung · Webdesign · KI &amp; Automatisierung
-      </div>
       <div class="contact">
         <div class="contact-item">
           <span class="icon">📍</span>
@@ -230,8 +247,8 @@
     <div class="card-footer">
       <span class="url">it.amertens.me</span>
       <div class="social">
-        <a href="https://linkedin.com/in/achim-mertens-97b0" title="LinkedIn">in</a>
-        <a href="https://github.com/achimmertens" title="GitHub">GH</a>
+        <a href="https://linkedin.com/in/achim-mertens-97b0" title="LinkedIn">LinkedIn</a>
+        <a href="https://github.com/achimmertens" title="GitHub">GitHub</a>
       </div>
     </div>
   </div>
