@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Linkedin, Github, Landmark } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Landmark, FileText } from "lucide-react";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
@@ -68,6 +68,26 @@ function Kontakt() {
             <div><dt className="inline font-medium text-foreground">BIC: </dt><dd className="inline font-mono">TRBKDEBBXXX</dd></div>
             <div><dt className="inline font-medium text-foreground">Bank: </dt><dd className="inline">Trade Republic</dd></div>
           </dl>
+        </div>
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-6">
+        <div className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-lg flex items-center justify-center shrink-0 text-accent-foreground" style={{ background: "var(--gradient-accent)" }}>
+              <FileText size={28} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-card-foreground">Flyer zum Mitnehmen</h2>
+              <p className="mt-1 text-muted-foreground">
+                Meine Leistungen auf einen Blick – als DIN-A4-Flyer zum Ausdrucken oder Weitergeben.
+              </p>
+              <a href="/fachflyer-a4.pdf" target="_blank"
+                className="mt-4 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-md font-semibold hover:opacity-90 transition">
+                <FileText size={18} /> Flyer öffnen (PDF)
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
