@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Code2, Shield, Cloud, Bot, GraduationCap, Globe, Lightbulb, ArrowRight } from "lucide-react";
+import { Code2, Shield, Cloud, Bot, GraduationCap, Globe, Lightbulb, UtensilsCrossed, Palette, Grid3x3, BookOpen, Image, Film, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/leistungen")({
   head: () => ({
     meta: [
       { title: "Leistungen · Achim Mertens IT Consulting" },
-      { name: "description", content: "IT-Beratung, IAM, Softwareentwicklung, Webdesign, Cloud & On-Premises, KI-Automatisierung und Schulungen." },
+      { name: "description", content: "IT-Beratung, IAM, Softwareentwicklung, Webdesign, Cloud & On-Premises, KI-Automatisierung, Schulungen, Design und mehr." },
     ],
   }),
   component: Leistungen,
@@ -19,6 +19,12 @@ const items = [
   { icon: Cloud, title: "IT-Infrastruktur", desc: "Installation, Monitoring und Wartung. Cloud (AWS, Azure, Hetzner) oder klassisch On-Premises – inklusive Backup- und Update-Strategie." },
   { icon: Bot, title: "KI & Automatisierung", desc: "LLM-Integration, RAG-Anwendungen, OpenClaw-Agenten mit Telegram-Anbindung und individuelle Bots." },
   { icon: GraduationCap, title: "Schulungen & Workshops", desc: "Praktische Recherche und Workshops zu IT-Themen Ihrer Wahl (nicht nur IAM, Webentwicklung, KI-Tools und Automatisierung) – remote oder vor Ort." },
+  { icon: UtensilsCrossed, title: "Speisekarten mit KI designen", desc: "Professionell gestaltete Menüs für Restaurants – erstellt in kurzer Zeit, als fertiges Design inklusive Druckvorbereitung." },
+  { icon: Palette, title: "Logos und Brand Kits erstellen", desc: "Komplette Markenauftritte (Logo, Farben, Schriftarten) für kleine Unternehmen, die bisher kein einheitliches Branding haben." },
+  { icon: Grid3x3, title: "Social-Media-Vorlagenpakete", desc: "Wiederverwendbare Design-Templates für Unternehmen, die regelmäßig posten möchten, ohne jedes Mal neu gestalten zu müssen." },
+  { icon: BookOpen, title: "Schulungsunterlagen und Handbücher", desc: "Unstrukturierte Firmeninfos werden in professionelle Dokumentationen umgewandelt – ideal für interne Trainings und Prozesse." },
+  { icon: Image, title: "Flyer und Aushänge", desc: "Werbematerialien für lokale Aktionen, die Unternehmen regelmäßig benötigen – wiederkehrende Aufträge inklusive." },
+  { icon: Film, title: "Animationen und Bewegtbild", desc: "Kurze, visuell ansprechende Animationen für Werbung, Websites oder Social Media." },
 ];
 
 function Leistungen() {
@@ -29,7 +35,7 @@ function Leistungen() {
           <p className="text-accent text-sm font-semibold uppercase tracking-widest">Leistungen</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">Was ich für Sie umsetze</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80 text-lg">
-            Sieben Schwerpunkte, ein Anspruch: pragmatische Lösungen, die im Alltag bestehen.
+            IT-Beratung, Design und mehr – praxisnah und umsetzungsstark.
           </p>
         </div>
       </section>
