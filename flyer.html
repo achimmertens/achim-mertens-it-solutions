@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { margin: 0; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    color: #1a1f36;
+    background: #fff;
+  }
+
+  /* ── Layout ── */
+  .flyer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* ── Header: Foto + Logo + Kontakt ── */
+  .header {
+    background: linear-gradient(135deg, #1a2759 0%, #2a3f7a 50%, #3b7cb5 100%);
+    color: #fff;
+    padding: 14mm 16mm 10mm;
+    display: flex;
+    gap: 12mm;
+    align-items: center;
+  }
+  .header-photo {
+    width: 52mm;
+    height: 52mm;
+    border-radius: 6mm;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.25);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+  }
+  .header-text {
+    flex: 1;
+  }
+  .header-text h1 {
+    font-size: 28pt;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .header-text .subtitle {
+    font-size: 13pt;
+    opacity: 0.85;
+    margin-top: 3mm;
+    font-weight: 500;
+  }
+  .header-contact {
+    margin-top: 4mm;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8mm;
+    row-gap: 2mm;
+    font-size: 10pt;
+    opacity: 0.9;
+  }
+  .header-contact a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .header-logo {
+    width: 26mm;
+    opacity: 0.9;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+  .header-logo img {
+    width: 100%;
+  }
+
+  /* ── Haupt-Slogan ── */
+  .slogan {
+    padding: 5mm 16mm 4mm;
+    font-size: 15pt;
+    font-weight: 600;
+    color: #1a2759;
+    line-height: 1.3;
+  }
+
+  /* ── Service-Bereich ── */
+  .services {
+    padding: 0 16mm 4mm;
+    flex: 1;
+  }
+  .services-title {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #3b7cb5;
+    margin-bottom: 3mm;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5mm 5mm;
+  }
+  .service-item {
+    padding: 2.5mm 3mm;
+    border-left: 3px solid #3b7cb5;
+    background: #f2f6fc;
+    border-radius: 0 2mm 2mm 0;
+  }
+  .service-item h3 {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #1a2759;
+  }
+  .service-item p {
+    font-size: 8pt;
+    color: #444;
+    margin-top: 0.8mm;
+    line-height: 1.35;
+  }
+
+  /* ── Warum ich? ── */
+  .why-section {
+    padding: 0 16mm 3mm;
+    display: flex;
+    gap: 6mm;
+  }
+  .why-box {
+    background: linear-gradient(135deg, #f2f6fc, #e8f0fa);
+    border-radius: 3mm;
+    padding: 3mm 4mm;
+    flex: 1;
+  }
+  .why-box h3 {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1a2759;
+    margin-bottom: 1.5mm;
+  }
+  .why-box ul {
+    list-style: none;
+    font-size: 8pt;
+    color: #444;
+    line-height: 1.6;
+  }
+  .why-box ul li::before {
+    content: "✓ ";
+    color: #3b7cb5;
+    font-weight: 700;
+  }
+  .why-box-iam {
+    font-size: 7.5pt;
+    color: #666;
+    margin-top: 1.5mm;
+    line-height: 1.4;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: #1a2759;
+    color: #fff;
+    padding: 4mm 16mm;
+    font-size: 8pt;
+    text-align: center;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+  .footer a {
+    color: #8ab8e6;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <div class="header">
+    <img class="header-photo" src="file:///home/achim/.openclaw/workspace/achim-mertens-it-solutions/public/flyer-profile.jpg" alt="Achim Mertens">
+    <div class="header-text">
+      <h1>Achim Mertens</h1>
+      <div class="subtitle">IT-Consulting · Webdesign · Softwareentwicklung</div>
+      <div class="header-contact">
+        <span>✉ achim_mertens@gmx.de</span>
+        <span>📞 +49 1517 4412216</span>
+        <span>🌐 it.amertens.me</span>
+      </div>
+    </div>
+    <div class="header-logo">
+      <img src="file:///home/achim/.openclaw/workspace/achim-mertens-it-solutions/public/flyer-logo.png" alt="Logo">
+    </div>
+  </div>
+
+  <div class="slogan">
+    Ihre individuelle und pragmatische IT-Unterstützung –<br>
+    aus Eschweiler, für die Region.
+  </div>
+
+  <div class="services">
+    <div class="services-title">Meine Leistungen für Ihr Unternehmen</div>
+    <div class="services-grid">
+      <div class="service-item">
+        <h3>🌐 Webdesign & Webentwicklung</h3>
+        <p>Moderne, schnelle Webseiten – responsive, barrierefrei, SEO-optimiert. Ideal für kleine Unternehmen und Selbstständige.</p>
+      </div>
+      <div class="service-item">
+        <h3>🎨 Logos & Brand Kits</h3>
+        <p>Komplette Markenauftritte (Logo, Farben, Schriften) für Unternehmen ohne einheitliches Branding.</p>
+      </div>
+      <div class="service-item">
+        <h3>📱 Social-Media-Vorlagen</h3>
+        <p>Wiederverwendbare Design-Templates für regelmäßige Posts – ohne jeden Tag neu gestalten zu müssen.</p>
+      </div>
+      <div class="service-item">
+        <h3>🍴 Speisekarten mit KI</h3>
+        <p>Professionell gestaltete Menüs in kurzer Zeit, fertig für den Druck – für Restaurants und Cafés.</p>
+      </div>
+      <div class="service-item">
+        <h3>📄 Flyer & Aushänge</h3>
+        <p>Werbematerialien für lokale Aktionen – schnell, günstig, druckbereit. Auch als wiederkehrender Service.</p>
+      </div>
+      <div class="service-item">
+        <h3>🎬 Animationen & Bewegtbild</h3>
+        <p>Kurze, visuell ansprechende Animationen für Werbung, Web und Social Media.</p>
+      </div>
+      <div class="service-item">
+        <h3>💡 IT-Beratung</h3>
+        <p>Strategie, Technologie-Auswahl und Architektur-Reviews – herstellerunabhängig und pragmatisch.</p>
+      </div>
+      <div class="service-item">
+        <h3>📘 Schulungen & Handbücher</h3>
+        <p>Unstrukturierte Firmeninfos werden zu professionellen Dokumentationen – für interne Trainings und Prozesse.</p>
+      </div>
+      <div class="service-item">
+        <h3>🤖 KI & Automatisierung</h3>
+        <p>LLM-Integration, Chatbots und Workflow-Automatisierung für Ihren Geschäftsalltag.</p>
+      </div>
+      <div class="service-item">
+        <h3>⚙️ Softwareentwicklung</h3>
+        <p>Maßgeschneiderte Tools, API-Anbindungen und Skripte – sauber dokumentiert und wartbar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-section">
+    <div class="why-box">
+      <h3>Warum mit mir arbeiten?</h3>
+      <ul>
+        <li>Ein Ansprechpartner – kein Vertriebs-Pingpong</li>
+        <li>Erste Beratungsstunde kostenlos</li>
+        <li>Transparente Stunden- und Pauschalpreise</li>
+        <li>25+ Jahre Erfahrung im Großkonzern &amp; Mittelstand</li>
+      </ul>
+    </div>
+    <div class="why-box">
+      <h3>Branchen, die ich unterstütze</h3>
+      <ul>
+        <li>Restaurants &amp; Cafés</li>
+        <li>Einzelhandel &amp; kleine Geschäfte</li>
+        <li>Handwerksbetriebe</li>
+        <li>Physio- &amp; Arztpraxen</li>
+      </ul>
+      <div class="why-box-iam">
+        <strong>Hinweis:</strong> Auch Identity &amp; Access Management (IAM), Cloud-Infrastruktur und IT-Sicherheitslösungen sind Teil meines Portfolios – für Unternehmen mit entsprechenden Anforderungen.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Achim Mertens · Vennstr. 31 · 52249 Eschweiler · <a href="tel:+4915174412216">+49 1517 4412216</a> · <a href="mailto:achim_mertens@gmx.de">achim_mertens@gmx.de</a> · <a href="https://it.amertens.me">it.amertens.me</a>
+  </div>
+
+</div>
+</body>
+</html>
