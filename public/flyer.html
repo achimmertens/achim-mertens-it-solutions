@@ -15,164 +15,154 @@
     background: #fff;
   }
 
-  /* ── Layout ── */
   .flyer {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
-  /* ── Header: Foto + Logo + Kontakt ── */
+  /* ── Header ── */
   .header {
     background: linear-gradient(135deg, #1a2759 0%, #2a3f7a 50%, #3b7cb5 100%);
     color: #fff;
-    padding: 14mm 16mm 10mm;
+    padding: 12mm 14mm 8mm;
     display: flex;
-    gap: 12mm;
+    gap: 10mm;
     align-items: center;
   }
   .header-photo {
-    width: 52mm;
-    height: 52mm;
+    width: 48mm;
+    height: 48mm;
     border-radius: 6mm;
     object-fit: cover;
     border: 3px solid rgba(255,255,255,0.25);
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     flex-shrink: 0;
   }
-  .header-text {
-    flex: 1;
-  }
+  .header-text { flex: 1; }
   .header-text h1 {
-    font-size: 28pt;
+    font-size: 26pt;
     font-weight: 800;
     letter-spacing: -0.5px;
     line-height: 1.1;
   }
   .header-text .subtitle {
-    font-size: 13pt;
+    font-size: 12pt;
     opacity: 0.85;
-    margin-top: 3mm;
+    margin-top: 2mm;
     font-weight: 500;
   }
   .header-contact {
-    margin-top: 4mm;
+    margin-top: 3mm;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 8mm;
-    row-gap: 2mm;
-    font-size: 10pt;
+    gap: 1.5mm 6mm;
+    font-size: 9pt;
     opacity: 0.9;
   }
-  .header-contact a {
-    color: #fff;
-    text-decoration: none;
-  }
+  .header-contact a { color: #fff; text-decoration: none; }
   .header-logo {
-    width: 26mm;
+    width: 24mm;
     opacity: 0.9;
     flex-shrink: 0;
     align-self: flex-start;
   }
-  .header-logo img {
-    width: 100%;
-  }
+  .header-logo img { width: 100%; }
 
-  /* ── Haupt-Slogan ── */
+  /* ── Slogan ── */
   .slogan {
-    padding: 5mm 16mm 4mm;
-    font-size: 15pt;
+    padding: 4mm 14mm 3mm;
+    font-size: 14pt;
     font-weight: 600;
     color: #1a2759;
     line-height: 1.3;
   }
 
-  /* ── Service-Bereich ── */
+  /* ── Services ── */
   .services {
-    padding: 0 16mm 4mm;
+    padding: 0 14mm 3mm;
     flex: 1;
   }
   .services-title {
-    font-size: 10pt;
+    font-size: 9pt;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: #3b7cb5;
-    margin-bottom: 3mm;
+    margin-bottom: 2mm;
   }
   .services-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5mm 5mm;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5mm 3mm;
   }
   .service-item {
-    padding: 2.5mm 3mm;
-    border-left: 3px solid #3b7cb5;
+    padding: 2mm 2.5mm;
     background: #f2f6fc;
-    border-radius: 0 2mm 2mm 0;
+    border-radius: 2mm;
   }
   .service-item h3 {
-    font-size: 9.5pt;
+    font-size: 7.5pt;
     font-weight: 700;
     color: #1a2759;
   }
   .service-item p {
-    font-size: 8pt;
-    color: #444;
-    margin-top: 0.8mm;
-    line-height: 1.35;
+    font-size: 6.5pt;
+    color: #555;
+    margin-top: 0.5mm;
+    line-height: 1.3;
   }
+  .service-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 1.5mm;
+    fill: #3b7cb5;
+  }
+  .service-icon svg { display: block; }
 
-  /* ── Warum ich? ── */
+  /* ── Why section ── */
   .why-section {
-    padding: 0 16mm 3mm;
+    padding: 0 14mm 3mm;
     display: flex;
-    gap: 6mm;
+    gap: 5mm;
   }
   .why-box {
     background: linear-gradient(135deg, #f2f6fc, #e8f0fa);
     border-radius: 3mm;
-    padding: 3mm 4mm;
+    padding: 2.5mm 3.5mm;
     flex: 1;
   }
   .why-box h3 {
-    font-size: 9pt;
+    font-size: 8.5pt;
     font-weight: 700;
     color: #1a2759;
-    margin-bottom: 1.5mm;
+    margin-bottom: 1mm;
   }
   .why-box ul {
     list-style: none;
-    font-size: 8pt;
+    font-size: 7.5pt;
     color: #444;
-    line-height: 1.6;
+    line-height: 1.5;
   }
   .why-box ul li::before {
     content: "✓ ";
     color: #3b7cb5;
     font-weight: 700;
   }
-  .why-box-iam {
-    font-size: 7.5pt;
-    color: #666;
-    margin-top: 1.5mm;
-    line-height: 1.4;
-  }
 
   /* ── Footer ── */
   .footer {
     background: #1a2759;
     color: #fff;
-    padding: 4mm 16mm;
-    font-size: 8pt;
+    padding: 3mm 14mm;
+    font-size: 7.5pt;
     text-align: center;
     opacity: 0.9;
     line-height: 1.5;
   }
-  .footer a {
-    color: #8ab8e6;
-    text-decoration: none;
-  }
+  .footer a { color: #8ab8e6; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -184,9 +174,9 @@
       <h1>Achim Mertens</h1>
       <div class="subtitle">IT-Consulting · Webdesign · Softwareentwicklung</div>
       <div class="header-contact">
-        <span>✉ achim_mertens@gmx.de</span>
-        <span>📞 +49 1517 4412216</span>
-        <span>🌐 it.amertens.me</span>
+        <span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:2px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg> achim_mertens@gmx.de</span>
+        <span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:2px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7 2 2 0 011.72 2z"/></svg> +49 1517 4412216</span>
+        <span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:2px"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> <a href="https://it.amertens.me">https://it.amertens.me</a></span>
       </div>
     </div>
     <div class="header-logo">
@@ -202,46 +192,72 @@
   <div class="services">
     <div class="services-title">Meine Leistungen für Ihr Unternehmen</div>
     <div class="services-grid">
+
       <div class="service-item">
-        <h3>🌐 Webdesign & Webentwicklung</h3>
-        <p>Moderne, schnelle Webseiten – responsive, barrierefrei, SEO-optimiert. Ideal für kleine Unternehmen und Selbstständige.</p>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></span>Webdesign &amp; Webentwicklung</h3>
+        <p>Moderne Webseiten – responsive, barrierefrei, SEO-optimiert. Ideal für kleine Unternehmen und Selbstständige.</p>
       </div>
+
       <div class="service-item">
-        <h3>🎨 Logos & Brand Kits</h3>
-        <p>Komplette Markenauftritte (Logo, Farben, Schriften) für Unternehmen ohne einheitliches Branding.</p>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M4 21l3-3 10-10 3 3-10 10-3 3H4v-3z"/></svg></span>Logos &amp; Brand Kits</h3>
+        <p>Komplette Markenauftritte (Logo, Farben, Schriften) für ein einheitliches Unternehmens-Branding.</p>
       </div>
+
       <div class="service-item">
-        <h3>📱 Social-Media-Vorlagen</h3>
-        <p>Wiederverwendbare Design-Templates für regelmäßige Posts – ohne jeden Tag neu gestalten zu müssen.</p>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Social-Media-Vorlagen</h3>
+        <p>Wiederverwendbare Design-Templates für regelmäßige Posts – ohne jeden Tag neu zu gestalten.</p>
       </div>
+
       <div class="service-item">
-        <h3>🍴 Speisekarten mit KI</h3>
-        <p>Professionell gestaltete Menüs in kurzer Zeit, fertig für den Druck – für Restaurants und Cafés.</p>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>Speisekarten mit KI designen</h3>
+        <p>Professionell gestaltete Menüs für Restaurants &amp; Cafés – in kurzer Zeit, druckfertig.</p>
       </div>
+
       <div class="service-item">
-        <h3>📄 Flyer & Aushänge</h3>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>Flyer &amp; Aushänge</h3>
         <p>Werbematerialien für lokale Aktionen – schnell, günstig, druckbereit. Auch als wiederkehrender Service.</p>
       </div>
+
       <div class="service-item">
-        <h3>🎬 Animationen & Bewegtbild</h3>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>Animationen &amp; Bewegtbild</h3>
         <p>Kurze, visuell ansprechende Animationen für Werbung, Web und Social Media.</p>
       </div>
+
       <div class="service-item">
-        <h3>💡 IT-Beratung</h3>
-        <p>Strategie, Technologie-Auswahl und Architektur-Reviews – herstellerunabhängig und pragmatisch.</p>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14"/></svg></span>IT-Beratung</h3>
+        <p>Strategie, Technologie-Auswahl, Architektur-Reviews – herstellerunabhängig und pragmatisch.</p>
       </div>
+
       <div class="service-item">
-        <h3>📘 Schulungen & Handbücher</h3>
-        <p>Unstrukturierte Firmeninfos werden zu professionellen Dokumentationen – für interne Trainings und Prozesse.</p>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>Schulungen &amp; Handbücher</h3>
+        <p>Unstrukturierte Firmeninfos werden zu professionellen Dokumentationen – für Trainings und Prozesse.</p>
       </div>
+
       <div class="service-item">
-        <h3>🤖 KI & Automatisierung</h3>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>KI &amp; Automatisierung</h3>
         <p>LLM-Integration, Chatbots und Workflow-Automatisierung für Ihren Geschäftsalltag.</p>
       </div>
+
       <div class="service-item">
-        <h3>⚙️ Softwareentwicklung</h3>
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Softwareentwicklung</h3>
         <p>Maßgeschneiderte Tools, API-Anbindungen und Skripte – sauber dokumentiert und wartbar.</p>
       </div>
+
+      <div class="service-item">
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Identity &amp; Access Management</h3>
+        <p>Konzeption und Einführung sicherer IAM-Lösungen – Rollenkonzepte, SSO, Lifecycle-Management.</p>
+      </div>
+
+      <div class="service-item">
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></span>Cloud &amp; On-Premises</h3>
+        <p>Installation, Monitoring, Wartung. Cloud (AWS, Azure, Hetzner) oder klassisch vor Ort – inkl. Backup-Strategie.</p>
+      </div>
+
+      <div class="service-item">
+        <h3><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>IT-Sicherheit &amp; Infrastruktur</h3>
+        <p>Sicherheitskonzepte, Firewall, Backup, Monitoring – Ihre Systeme geschützt und zuverlässig.</p>
+      </div>
+
     </div>
   </div>
 
@@ -256,21 +272,18 @@
       </ul>
     </div>
     <div class="why-box">
-      <h3>Branchen, die ich unterstütze</h3>
+      <h3>Branchen, die ich u.a. unterstützen möchte</h3>
       <ul>
         <li>Restaurants &amp; Cafés</li>
         <li>Einzelhandel &amp; kleine Geschäfte</li>
         <li>Handwerksbetriebe</li>
         <li>Physio- &amp; Arztpraxen</li>
       </ul>
-      <div class="why-box-iam">
-        <strong>Hinweis:</strong> Auch Identity &amp; Access Management (IAM), Cloud-Infrastruktur und IT-Sicherheitslösungen sind Teil meines Portfolios – für Unternehmen mit entsprechenden Anforderungen.
-      </div>
     </div>
   </div>
 
   <div class="footer">
-    Achim Mertens · Vennstr. 31 · 52249 Eschweiler · <a href="tel:+4915174412216">+49 1517 4412216</a> · <a href="mailto:achim_mertens@gmx.de">achim_mertens@gmx.de</a> · <a href="https://it.amertens.me">it.amertens.me</a>
+    Achim Mertens · Vennstr. 31 · 52249 Eschweiler · <a href="tel:+4915174412216">+49 1517 4412216</a> · <a href="mailto:achim_mertens@gmx.de">achim_mertens@gmx.de</a> · <a href="https://it.amertens.me">https://it.amertens.me</a>
   </div>
 
 </div>
