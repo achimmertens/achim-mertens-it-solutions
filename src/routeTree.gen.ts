@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UeberMichRouteImport } from './routes/ueber-mich'
 import { Route as PreiseRouteImport } from './routes/preise'
 import { Route as LeistungenRouteImport } from './routes/leistungen'
+import { Route as LeistungenKiAutomatisierungRouteImport } from './routes/leistungen.ki-automatisierung'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -30,6 +31,12 @@ const PreiseRoute = PreiseRouteImport.update({
 const LeistungenRoute = LeistungenRouteImport.update({
   id: '/leistungen',
   path: '/leistungen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+const LeistungenKiAutomatisierungRoute = LeistungenKiAutomatisierungRouteImport.update({
+  id: '/leistungen/ki-automatisierung',
+  path: '/leistungen/ki-automatisierung',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontaktRoute = KontaktRouteImport.update({
@@ -59,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/impressum': typeof ImpressumRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
+  '/leistungen/ki-automatisierung': typeof LeistungenKiAutomatisierungRoute
   '/preise': typeof PreiseRoute
   '/ueber-mich': typeof UeberMichRoute
 }
@@ -68,6 +76,7 @@ export interface FileRoutesByTo {
   '/impressum': typeof ImpressumRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
+  '/leistungen/ki-automatisierung': typeof LeistungenKiAutomatisierungRoute
   '/preise': typeof PreiseRoute
   '/ueber-mich': typeof UeberMichRoute
 }
@@ -78,6 +87,7 @@ export interface FileRoutesById {
   '/impressum': typeof ImpressumRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
+  '/leistungen/ki-automatisierung': typeof LeistungenKiAutomatisierungRoute
   '/preise': typeof PreiseRoute
   '/ueber-mich': typeof UeberMichRoute
 }
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/kontakt'
     | '/leistungen'
+    | '/leistungen/ki-automatisierung'
     | '/preise'
     | '/ueber-mich'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +109,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/kontakt'
     | '/leistungen'
+    | '/leistungen/ki-automatisierung'
     | '/preise'
     | '/ueber-mich'
   id:
@@ -107,6 +119,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/kontakt'
     | '/leistungen'
+    | '/leistungen/ki-automatisierung'
     | '/preise'
     | '/ueber-mich'
   fileRoutesById: FileRoutesById
@@ -117,6 +130,7 @@ export interface RootRouteChildren {
   ImpressumRoute: typeof ImpressumRoute
   KontaktRoute: typeof KontaktRoute
   LeistungenRoute: typeof LeistungenRoute
+  LeistungenKiAutomatisierungRoute: typeof LeistungenKiAutomatisierungRoute
   PreiseRoute: typeof PreiseRoute
   UeberMichRoute: typeof UeberMichRoute
 }
@@ -142,6 +156,13 @@ declare module '@tanstack/react-router' {
       path: '/leistungen'
       fullPath: '/leistungen'
       preLoaderRoute: typeof LeistungenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leistungen/ki-automatisierung': {
+      id: '/leistungen/ki-automatisierung'
+      path: '/leistungen/ki-automatisierung'
+      fullPath: '/leistungen/ki-automatisierung'
+      preLoaderRoute: typeof LeistungenKiAutomatisierungRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontakt': {
@@ -181,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImpressumRoute: ImpressumRoute,
   KontaktRoute: KontaktRoute,
   LeistungenRoute: LeistungenRoute,
+  LeistungenKiAutomatisierungRoute: LeistungenKiAutomatisierungRoute,
   PreiseRoute: PreiseRoute,
   UeberMichRoute: UeberMichRoute,
 }

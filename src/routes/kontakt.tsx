@@ -91,6 +91,26 @@ function Kontakt() {
         </div>
       </section>
 
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-6">
+        <div className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-lg flex items-center justify-center shrink-0 text-accent-foreground" style={{ background: "var(--gradient-accent)" }}>
+              <FileText size={28} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-card-foreground">Visitenkarte zum Mitnehmen</h2>
+              <p className="mt-1 text-muted-foreground">
+                Meine IT-Visitenkarte – druckfertig im 85×55 mm-Format, 9 Karten pro A4-Bogen.
+              </p>
+              <a href="/visitenkarte-it.html" target="_blank"
+                className="mt-4 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-md font-semibold hover:opacity-90 transition">
+                <FileText size={18} /> Visitenkarte öffnen (HTML)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
         <div className="rounded-2xl p-8 md:p-10 text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
           <h2 className="text-2xl font-bold">Online finden Sie mich hier</h2>

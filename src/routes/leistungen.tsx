@@ -17,7 +17,7 @@ const items = [
   { icon: Code2, title: "Individuelle Softwareentwicklung", desc: "Maßgeschneiderte Tools, API- und Datenbank-Anbindungen, Skripte, ... – sauber dokumentiert und wartbar." },
   { icon: Globe, title: "Webdesign & Webentwicklung", desc: "Schnelle, moderne Webseiten mit Javascript. SEO-optimiert, barrierearm, mobilfreundlich – wie diese Seite hier." },
   { icon: Cloud, title: "IT-Infrastruktur", desc: "Installation, Monitoring und Wartung. Cloud (AWS, Azure, Hetzner) oder klassisch On-Premises – inklusive Backup- und Update-Strategie." },
-  { icon: Bot, title: "KI & Automatisierung", desc: "LLM-Integration, RAG-Anwendungen, OpenClaw-Agenten mit Telegram-Anbindung und individuelle Bots." },
+  { icon: Bot, title: "KI & Automatisierung", desc: "LLM-Integration, RAG-Anwendungen, OpenClaw-Agenten mit Telegram-Anbindung und individuelle Bots.", href: "/leistungen/ki-automatisierung" },
   { icon: GraduationCap, title: "Schulungen & Workshops", desc: "Praktische Recherche und Workshops zu IT-Themen Ihrer Wahl (nicht nur IAM, Webentwicklung, KI-Tools und Automatisierung) – remote oder vor Ort." },
   { icon: UtensilsCrossed, title: "Speisekarten mit KI designen", desc: "Professionell gestaltete Menüs für Restaurants – erstellt in kurzer Zeit, als fertiges Design inklusive Druckvorbereitung." },
   { icon: Palette, title: "Logos und Brand Kits erstellen", desc: "Komplette Markenauftritte (Logo, Farben, Schriftarten) für kleine Unternehmen, die bisher kein einheitliches Branding haben." },
@@ -41,15 +41,29 @@ function Leistungen() {
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-2 gap-6">
-        {items.map((s) => (
-          <article key={s.title} className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center text-accent-foreground" style={{ background: "var(--gradient-accent)" }}>
-              <s.icon size={24} />
-            </div>
-            <h2 className="mt-4 text-xl font-bold text-card-foreground">{s.title}</h2>
-            <p className="mt-2 text-muted-foreground leading-relaxed">{s.desc}</p>
-          </article>
-        ))}
+        {items.map((s) => {
+          const card = (
+            <article key={s.title} className={`p-7 bg-card border border-border rounded-xl transition-all ${s.href ? "cursor-pointer hover:border-accent hover:shadow-lg" : ""}`} style={{ boxShadow: "var(--shadow-soft)" }}>
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center text-accent-foreground" style={{ background: "var(--gradient-accent)" }}>
+                <s.icon size={24} />
+              </div>
+              <h2 className="mt-4 text-xl font-bold text-card-foreground">{s.title}</h2>
+              <p className="mt-2 text-muted-foreground leading-relaxed">{s.desc}</p>
+              {s.href && (
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-accent transition-colors">
+                  Mehr erfahren <ArrowRight size={16} />
+                </span>
+              )}
+            </article>
+          );
+          return s.href ? (
+            <Link key={s.title} to={s.href} className="block group">
+              {card}
+            </Link>
+          ) : (
+            card
+          );
+        })}
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
