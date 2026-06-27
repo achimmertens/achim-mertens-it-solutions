@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { margin: 0; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Comic Sans MS", "Segoe UI", "Patrick Hand", cursive, sans-serif;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #FFF7ED;
+    color: #3D2C1A;
+  }
+
+  .flyer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 5mm 6mm 4mm 6mm;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    padding: 4mm 2mm 2mm;
+    margin-bottom: 2mm;
+  }
+  .header .tag {
+    display: inline-block;
+    background: #F59E0B;
+    color: #fff;
+    font-size: 12pt;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 1mm 6mm;
+    border-radius: 6mm;
+    margin-bottom: 1.5mm;
+  }
+  .header h1 {
+    font-size: 26pt;
+    font-weight: 900;
+    color: #D97706;
+    line-height: 1.1;
+  }
+  .header h1 em {
+    font-style: normal;
+    color: #7C2D12;
+  }
+  .header .subline {
+    font-size: 10pt;
+    color: #92400E;
+    margin-top: 1mm;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Comic Grid ── */
+  .comic-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+    margin-bottom: 1mm;
+  }
+
+  .comic-row {
+    display: flex;
+    gap: 2mm;
+    flex: 1;
+  }
+
+  /* ── Single Panel ── */
+  .panel {
+    flex: 1;
+    background: #FFFDF6;
+    border: 3px solid #D97706;
+    border-radius: 4mm;
+    padding: 2.5mm 3mm;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 1mm 1mm 0 #F59E0B44;
+  }
+
+  .panel .scene {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    flex: 1;
+  }
+
+  .panel .scene-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5mm;
+    min-width: 22mm;
+  }
+
+  .panel .emoji-char {
+    font-size: 30pt;
+    line-height: 1;
+  }
+
+  .panel .emoji-context {
+    font-size: 14pt;
+    line-height: 1.2;
+  }
+
+  .panel .scene-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5mm;
+  }
+
+  .speech-bubble {
+    background: #FEF3C7;
+    border: 2px solid #D97706;
+    border-radius: 3mm;
+    padding: 1.5mm 2.5mm;
+    font-size: 7.8pt;
+    font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+    font-weight: 600;
+    color: #7C2D12;
+    position: relative;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .speech-bubble::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid #FEF3C7;
+  }
+
+  .speech-bubble-left {
+    background: #FFEDD5;
+    border-color: #EA580C;
+  }
+
+  .speech-bubble-left::after {
+    left: auto;
+    right: -6px;
+    border-left: 6px solid #FFEDD5;
+    border-right: none;
+  }
+
+  .response-bubble {
+    background: #E0E7FF;
+    border: 2px solid #6366F1;
+    border-radius: 3mm;
+    padding: 1.2mm 2.5mm;
+    font-size: 8pt;
+    color: #3730A3;
+    font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+    position: relative;
+    word-break: break-word;
+  }
+
+  .response-bubble::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid #E0E7FF;
+  }
+
+  .action-icon {
+    font-size: 24pt;
+    text-align: center;
+    line-height: 1.1;
+    margin-top: 0.5mm;
+  }
+
+  .action-icon span {
+    display: block;
+    font-size: 7pt;
+    font-weight: 600;
+    color: #92400E;
+    margin-top: -1px;
+  }
+
+  .panel-number {
+    position: absolute;
+    top: -2mm;
+    left: -1mm;
+    background: #F59E0B;
+    color: #fff;
+    width: 7mm;
+    height: 7mm;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9pt;
+    font-weight: 900;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #D97706;
+  }
+
+  /* ── Full-width Panel (bottom CTA) ── */
+  .panel-cta {
+    background: linear-gradient(135deg, #FFF7ED, #FFEDD5);
+    border: 3px solid #D97706;
+    border-radius: 4mm;
+    padding: 2.5mm 4mm;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    flex: 0 0 16mm;
+    box-shadow: 1mm 1mm 0 #F59E0B44;
+    position: relative;
+  }
+  .panel-cta .cta-text {
+    flex: 1;
+  }
+  .panel-cta .cta-text h3 {
+    font-size: 14pt;
+    font-weight: 900;
+    color: #7C2D12;
+  }
+  .panel-cta .cta-text p {
+    font-size: 9pt;
+    color: #92400E;
+    margin-top: 0.5mm;
+    line-height: 1.3;
+  }
+  .panel-cta .cta-button {
+    background: #F59E0B;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: 800;
+    padding: 2mm 5mm;
+    border-radius: 3mm;
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .panel-cta .cta-emoji {
+    font-size: 22pt;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    font-size: 7.5pt;
+    color: #92400E;
+    padding-top: 0.5mm;
+    line-height: 1.4;
+    border-top: 2px dashed #D9770666;
+  }
+  .footer a { color: #D97706; text-decoration: none; font-weight: 600; }
+  .footer .stars { letter-spacing: 3px; color: #F59E0B; font-size: 9pt; }
+
+  /* small quirks */
+  .bang { color: #DC2626; font-weight: 900; }
+  .arrow-symbol { color: #6366F1; }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="tag">✨ Neu &amp; Anders ✨</div>
+    <h1><em>Dein persönlicher</em> KI-Bot<br>– immer für dich da.</h1>
+    <div class="subline">💬 Sag mir einfach, was du brauchst. Ich kümmere mich darum.</div>
+  </div>
+
+  <!-- COMIC STRIPS -->
+  <div class="comic-grid">
+
+    <!-- ROW 1: 2 Panels -->
+    <div class="comic-row">
+      <!-- Panel 1: Passfoto -->
+      <div class="panel">
+        <div class="panel-number">1</div>
+        <div class="scene">
+          <div class="scene-left">
+            <div class="emoji-char">👨‍💼</div>
+            <div class="speech-bubble speech-bubble-left" style="font-size:7.2pt">
+              „Richte den Drucker ein und drucke ein <strong>Passfoto</strong> für mich aus!"
+            </div>
+          </div>
+          <div class="scene-right">
+            <div class="action-icon">🤖✉️ ➡️ 🖨️<br><span>Bot versteht…</span></div>
+            <div class="response-bubble" style="font-size:7.2pt">
+              ✅ Passfoto wurde ausgedruckt. Alles parat!
+            </div>
+            <div class="action-icon">
+              🖨️<span>📸 Passfoto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Urlaubsreal in Instagram -->
+      <div class="panel">
+        <div class="panel-number">2</div>
+        <div class="scene">
+          <div class="scene-left">
+            <div class="emoji-char">👩‍🦰🌲</div>
+            <div class="speech-bubble speech-bubble-left" style="font-size:7.2pt">
+              „Ich schicke dir gleich ein paar <strong>Fotos und Texte</strong>.<br>Bitte erzeuge ein <strong>Urlaubs-Reel</strong> für Instagram."
+            </div>
+          </div>
+          <div class="scene-right">
+            <div class="action-icon">📱 ➡️ 🎬 ✨<br><span>Bot erstellt…</span></div>
+            <div class="response-bubble" style="font-size:7.2pt">
+              🎉 Dein Urlaubs-Reel ist fertig! 🌴<br>
+              <span style="font-size:6.5pt;opacity:0.7">instagram.com/deinprofil/reel/…</span>
+            </div>
+            <div class="action-icon">
+              📱🌴☀️<span>Urlaubs-Reel online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 2: 1 Wide Panel (Meeting) -->
+    <div class="comic-row" style="flex:0.85">
+      <div class="panel" style="flex:1">
+        <div class="panel-number">3</div>
+        <div class="scene">
+          <div class="scene-left" style="min-width:20mm">
+            <div class="emoji-char">👔</div>
+            <div class="speech-bubble speech-bubble-left" style="font-size:8pt">
+              „Mache eine Zusammenfassung von der <strong>Audioaufnahme unseres Meetings</strong>."
+            </div>
+          </div>
+          <div class="scene-right" style="justify-content:center">
+            <div class="action-icon">🎙️ ➡️ 🤖���️<br><span>Bot analysiert &amp; strukturiert…</span></div>
+            <div class="response-bubble" style="font-size:8pt">
+              📋 <strong>Zusammenfassung erstellt</strong><br>
+              ✅ Entitäten in deinem <strong>Wiki</strong> hinzugefügt.<br>
+              🤖 <span class="arrow-symbol">→</span> <strong>Telegram-Kanal:</strong> „Alles bereit!"
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA PANEL -->
+  <div class="panel-cta">
+    <div class="panel-number" style="top:-2.5mm;left:auto;right:-1mm;background:#EA580C">💡</div>
+    <div class="cta-emoji">🤖</div>
+    <div class="cta-text">
+      <h3>Was kann dein persönlicher Bot noch für dich tun? <span class="bang">Fast alles!</span></h3>
+      <p>
+        📅 Termine planen &bull; 📧 E-Mails schreiben &bull; 📊 Dateien organisieren &bull; 🌐 Webseiten bauen<br>
+        🖼️ Bilder bearbeiten &bull; 📝 Blogartikel verfassen &bull; 🔍 Recherche erledigen &bull; 🎵 Playlists erstellen
+      </p>
+    </div>
+    <a class="cta-button" href="https://it.amertens.me/kontakt" target="_blank">Jetzt<br>anfragen →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="stars">✦ ✦ ✦</span><br>
+    Achim Mertens · <a href="https://it.amertens.me">it.amertens.me</a> · <a href="mailto:achim_mertens@gmx.de">achim_mertens@gmx.de</a><br>
+    Vennstr. 31 · 52249 Eschweiler · 📞 <a href="tel:+4915174412216">+49 1517 4412216</a>
+  </div>
+
+</div>
+</body>
+</html>

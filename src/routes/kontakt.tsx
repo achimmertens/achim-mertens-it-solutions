@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Linkedin, Github, Landmark, FileText } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Landmark, FileText, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
@@ -85,6 +85,26 @@ function Kontakt() {
               <a href="/fachflyer-a4.pdf" target="_blank"
                 className="mt-4 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-md font-semibold hover:opacity-90 transition">
                 <FileText size={18} /> Flyer öffnen (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-6">
+        <div className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-lg flex items-center justify-center shrink-0 text-accent-foreground" style={{ background: "var(--gradient-accent)" }}>
+              <Sparkles size={28} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-card-foreground">Erlebnis-Flyer</h2>
+              <p className="mt-1 text-muted-foreground">
+                Was kann dein persönlicher KI-Bot für dich tun? Ein comic-hafter Blick auf echte Alltagsszenen – inspirierend, anders, emotional.
+              </p>
+              <a href="/erlebnis-flyer-a4.pdf" target="_blank"
+                className="mt-4 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-md font-semibold hover:opacity-90 transition">
+                <Sparkles size={18} /> Erlebnis-Flyer öffnen (PDF)
               </a>
             </div>
           </div>
