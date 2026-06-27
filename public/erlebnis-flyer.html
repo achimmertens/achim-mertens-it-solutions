@@ -7,269 +7,229 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: "Comic Sans MS", "Segoe UI", "Patrick Hand", cursive, sans-serif;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
     width: 210mm;
     height: 297mm;
     overflow: hidden;
-    background: #FFF7ED;
-    color: #3D2C1A;
+    background: #1a1a2e;
+    color: #F5E6D3;
   }
 
   .flyer {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 5mm 6mm 4mm 6mm;
+    background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%);
+    padding: 5mm 7mm 3mm 7mm;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* ── Header ── */
-  .header {
-    text-align: center;
-    padding: 4mm 2mm 2mm;
-    margin-bottom: 2mm;
+  /* Subtle background sparkle */
+  .flyer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,215,0,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 85% 80%, rgba(255,105,180,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(100,149,237,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
   }
-  .header .tag {
+
+  /* ═══ HEADER ═══ */
+  .header {
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    padding: 2mm 0 1mm 2mm;
+    flex: 0 0 auto;
+  }
+  .header .badge {
     display: inline-block;
-    background: #F59E0B;
-    color: #fff;
-    font-size: 12pt;
+    background: rgba(255,215,0,0.15);
+    border: 1px solid rgba(255,215,0,0.3);
+    color: #FFD700;
+    font-size: 8pt;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    padding: 1mm 6mm;
-    border-radius: 6mm;
+    padding: 0.8mm 3.5mm;
+    border-radius: 4mm;
     margin-bottom: 1.5mm;
   }
   .header h1 {
-    font-size: 26pt;
-    font-weight: 900;
-    color: #D97706;
-    line-height: 1.1;
+    font-size: 24pt;
+    font-weight: 300;
+    color: #F5E6D3;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
   }
-  .header h1 em {
-    font-style: normal;
-    color: #7C2D12;
+  .header h1 strong {
+    font-weight: 700;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .header .subline {
     font-size: 10pt;
-    color: #92400E;
-    margin-top: 1mm;
-    letter-spacing: 0.5px;
+    color: rgba(245,230,211,0.6);
+    margin-top: 0.8mm;
+    font-weight: 300;
+    letter-spacing: 0.3px;
   }
 
-  /* ── Comic Grid ── */
-  .comic-grid {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2mm;
-    margin-bottom: 1mm;
-  }
-
-  .comic-row {
-    display: flex;
-    gap: 2mm;
-    flex: 1;
-  }
-
-  /* ── Single Panel ── */
-  .panel {
-    flex: 1;
-    background: #FFFDF6;
-    border: 3px solid #D97706;
-    border-radius: 4mm;
-    padding: 2.5mm 3mm;
-    display: flex;
-    flex-direction: column;
+  /* ═══ PHOTO COLLAGE ═══ */
+  .collage {
     position: relative;
-    box-shadow: 1mm 1mm 0 #F59E0B44;
-  }
-
-  .panel .scene {
-    display: flex;
-    align-items: center;
-    gap: 2mm;
+    z-index: 5;
     flex: 1;
-  }
-
-  .panel .scene-left {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 0.5mm;
-    min-width: 22mm;
+    margin: 0 -2mm;
   }
 
-  .panel .emoji-char {
-    font-size: 30pt;
-    line-height: 1;
+  .collage-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin: -4mm 0;
   }
 
-  .panel .emoji-context {
-    font-size: 14pt;
+  .photo {
+    position: relative;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2mm;
+    padding: 2.5mm;
+    box-shadow:
+      0 2mm 4mm rgba(0,0,0,0.3),
+      0 0 0 0.5px rgba(255,255,255,0.05);
+    transition: none;
+    flex-shrink: 0;
+  }
+
+  .photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1mm;
+  }
+
+  .photo .label {
+    position: absolute;
+    bottom: 4.5mm;
+    left: 4.5mm;
+    right: 4.5mm;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7) 40%);
+    padding: 4mm 2.5mm 2mm;
+    border-radius: 0 0 1mm 1mm;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     line-height: 1.2;
   }
-
-  .panel .scene-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5mm;
+  .photo .label em {
+    font-style: normal;
+    color: #FFD700;
   }
 
-  .speech-bubble {
-    background: #FEF3C7;
-    border: 2px solid #D97706;
-    border-radius: 3mm;
-    padding: 1.5mm 2.5mm;
-    font-size: 7.8pt;
-    font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
-    font-weight: 600;
-    color: #7C2D12;
+  /* Individual photo sizes & rotations */
+  .photo-1 {
+    width: 86mm;
+    transform: rotate(-3deg);
+    z-index: 4;
+    margin-right: -10mm;
+  }
+  .photo-2 {
+    width: 88mm;
+    transform: rotate(2.5deg);
+    z-index: 3;
+    margin-left: -8mm;
+    margin-top: 4mm;
+  }
+  .photo-3 {
+    width: 84mm;
+    transform: rotate(1.5deg);
+    z-index: 2;
+    margin-right: -10mm;
+    margin-top: -3mm;
+  }
+  .photo-4 {
+    width: 90mm;
+    transform: rotate(-1.5deg);
+    z-index: 1;
+    margin-left: -8mm;
+    margin-top: -1mm;
+  }
+
+  /* ═══ CTA ═══ */
+  .cta {
     position: relative;
-    line-height: 1.3;
-    word-break: break-word;
-  }
-
-  .speech-bubble::after {
-    content: "";
-    position: absolute;
-    left: -6px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 6px solid #FEF3C7;
-  }
-
-  .speech-bubble-left {
-    background: #FFEDD5;
-    border-color: #EA580C;
-  }
-
-  .speech-bubble-left::after {
-    left: auto;
-    right: -6px;
-    border-left: 6px solid #FFEDD5;
-    border-right: none;
-  }
-
-  .response-bubble {
-    background: #E0E7FF;
-    border: 2px solid #6366F1;
-    border-radius: 3mm;
-    padding: 1.2mm 2.5mm;
-    font-size: 8pt;
-    color: #3730A3;
-    font-family: "Comic Sans MS", "Segoe UI", cursive, sans-serif;
-    font-weight: 600;
-    line-height: 1.3;
-    position: relative;
-    word-break: break-word;
-  }
-
-  .response-bubble::after {
-    content: "";
-    position: absolute;
-    right: -6px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 6px solid #E0E7FF;
-  }
-
-  .action-icon {
-    font-size: 24pt;
+    z-index: 10;
     text-align: center;
-    line-height: 1.1;
-    margin-top: 0.5mm;
+    padding: 2mm 0 0.5mm;
+    flex: 0 0 auto;
   }
 
-  .action-icon span {
-    display: block;
-    font-size: 7pt;
-    font-weight: 600;
-    color: #92400E;
-    margin-top: -1px;
+  .cta p {
+    font-size: 13pt;
+    font-weight: 300;
+    color: rgba(245,230,211,0.85);
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5mm;
+  }
+  .cta p strong {
+    font-weight: 700;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .panel-number {
-    position: absolute;
-    top: -2mm;
-    left: -1mm;
-    background: #F59E0B;
-    color: #fff;
-    width: 7mm;
-    height: 7mm;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9pt;
-    font-weight: 900;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 1px #D97706;
-  }
-
-  /* ── Full-width Panel (bottom CTA) ── */
-  .panel-cta {
-    background: linear-gradient(135deg, #FFF7ED, #FFEDD5);
-    border: 3px solid #D97706;
-    border-radius: 4mm;
-    padding: 2.5mm 4mm;
-    display: flex;
-    align-items: center;
-    gap: 4mm;
-    flex: 0 0 16mm;
-    box-shadow: 1mm 1mm 0 #F59E0B44;
-    position: relative;
-  }
-  .panel-cta .cta-text {
-    flex: 1;
-  }
-  .panel-cta .cta-text h3 {
-    font-size: 14pt;
-    font-weight: 900;
-    color: #7C2D12;
-  }
-  .panel-cta .cta-text p {
-    font-size: 9pt;
-    color: #92400E;
-    margin-top: 0.5mm;
-    line-height: 1.3;
-  }
-  .panel-cta .cta-button {
-    background: #F59E0B;
-    color: #fff;
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFD700, #FF6B6B);
+    color: #1a1a2e;
     font-size: 10pt;
     font-weight: 800;
-    padding: 2mm 5mm;
+    padding: 2mm 8mm;
     border-radius: 3mm;
     text-decoration: none;
-    white-space: nowrap;
-    text-align: center;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2mm 3mm rgba(0,0,0,0.3);
   }
 
-  .panel-cta .cta-emoji {
-    font-size: 22pt;
-  }
-
-  /* ── Footer ── */
+  /* ═══ FOOTER ═══ */
   .footer {
+    position: relative;
+    z-index: 10;
     text-align: center;
-    font-size: 7.5pt;
-    color: #92400E;
-    padding-top: 0.5mm;
-    line-height: 1.4;
-    border-top: 2px dashed #D9770666;
+    font-size: 6.5pt;
+    color: rgba(245,230,211,0.35);
+    padding-top: 1mm;
+    flex: 0 0 auto;
+    border-top: 0.5px solid rgba(255,215,0,0.1);
   }
-  .footer a { color: #D97706; text-decoration: none; font-weight: 600; }
-  .footer .stars { letter-spacing: 3px; color: #F59E0B; font-size: 9pt; }
+  .footer a {
+    color: rgba(245,230,211,0.5);
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: #FFD700;
+  }
+  .footer .sep {
+    color: rgba(255,215,0,0.2);
+    margin: 0 2mm;
+  }
 
-  /* small quirks */
-  .bang { color: #DC2626; font-weight: 900; }
-  .arrow-symbol { color: #6366F1; }
+  /* Prevent page breaks */
+  .flyer, .collage, .photo { break-inside: avoid; page-break-inside: avoid; }
 </style>
 </head>
 <body>
@@ -277,106 +237,46 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="tag">✨ Neu &amp; Anders ✨</div>
-    <h1><em>Dein persönlicher</em> KI-Bot<br>– immer für dich da.</h1>
-    <div class="subline">💬 Sag mir einfach, was du brauchst. Ich kümmere mich darum.</div>
+    <div class="badge">✨ Einfach machen lassen</div>
+    <h1>Sag ihm, was du brauchst.<br><strong>Er kümmert sich.</strong></h1>
+    <div class="subline">Dein persönlicher KI-Bot – immer bereit, nie aufdringlich.</div>
   </div>
 
-  <!-- COMIC STRIPS -->
-  <div class="comic-grid">
-
-    <!-- ROW 1: 2 Panels -->
-    <div class="comic-row">
-      <!-- Panel 1: Passfoto -->
-      <div class="panel">
-        <div class="panel-number">1</div>
-        <div class="scene">
-          <div class="scene-left">
-            <div class="emoji-char">👨‍💼</div>
-            <div class="speech-bubble speech-bubble-left" style="font-size:7.2pt">
-              „Richte den Drucker ein und drucke ein <strong>Passfoto</strong> für mich aus!"
-            </div>
-          </div>
-          <div class="scene-right">
-            <div class="action-icon">🤖✉️ ➡️ 🖨️<br><span>Bot versteht…</span></div>
-            <div class="response-bubble" style="font-size:7.2pt">
-              ✅ Passfoto wurde ausgedruckt. Alles parat!
-            </div>
-            <div class="action-icon">
-              🖨️<span>📸 Passfoto</span>
-            </div>
-          </div>
-        </div>
+  <!-- PHOTO COLLAGE -->
+  <div class="collage">
+    <div class="collage-row">
+      <div class="photo photo-1">
+        <img src="./erlebnis-bild-1.jpg" alt="Szene 1">
+        <div class="label">„Richte den Drucker ein und<br>drucke ein <em>Passfoto</em> aus."</div>
       </div>
-
-      <!-- Panel 2: Urlaubsreal in Instagram -->
-      <div class="panel">
-        <div class="panel-number">2</div>
-        <div class="scene">
-          <div class="scene-left">
-            <div class="emoji-char">👩‍🦰🌲</div>
-            <div class="speech-bubble speech-bubble-left" style="font-size:7.2pt">
-              „Ich schicke dir gleich ein paar <strong>Fotos und Texte</strong>.<br>Bitte erzeuge ein <strong>Urlaubs-Reel</strong> für Instagram."
-            </div>
-          </div>
-          <div class="scene-right">
-            <div class="action-icon">📱 ➡️ 🎬 ✨<br><span>Bot erstellt…</span></div>
-            <div class="response-bubble" style="font-size:7.2pt">
-              🎉 Dein Urlaubs-Reel ist fertig! 🌴<br>
-              <span style="font-size:6.5pt;opacity:0.7">instagram.com/deinprofil/reel/…</span>
-            </div>
-            <div class="action-icon">
-              📱🌴☀️<span>Urlaubs-Reel online</span>
-            </div>
-          </div>
-        </div>
+      <div class="photo photo-2">
+        <img src="./erlebnis-bild-2.jpg" alt="Szene 2">
+        <div class="label">🖨️ <em>Passfoto</em> liegt bereit.</div>
       </div>
     </div>
-
-    <!-- ROW 2: 1 Wide Panel (Meeting) -->
-    <div class="comic-row" style="flex:0.85">
-      <div class="panel" style="flex:1">
-        <div class="panel-number">3</div>
-        <div class="scene">
-          <div class="scene-left" style="min-width:20mm">
-            <div class="emoji-char">👔</div>
-            <div class="speech-bubble speech-bubble-left" style="font-size:8pt">
-              „Mache eine Zusammenfassung von der <strong>Audioaufnahme unseres Meetings</strong>."
-            </div>
-          </div>
-          <div class="scene-right" style="justify-content:center">
-            <div class="action-icon">🎙️ ➡️ 🤖���️<br><span>Bot analysiert &amp; strukturiert…</span></div>
-            <div class="response-bubble" style="font-size:8pt">
-              📋 <strong>Zusammenfassung erstellt</strong><br>
-              ✅ Entitäten in deinem <strong>Wiki</strong> hinzugefügt.<br>
-              🤖 <span class="arrow-symbol">→</span> <strong>Telegram-Kanal:</strong> „Alles bereit!"
-            </div>
-          </div>
-        </div>
+    <div class="collage-row">
+      <div class="photo photo-3">
+        <img src="./erlebnis-bild-3.jpg" alt="Szene 3">
+        <div class="label">„Mach mir ein <em>Urlaubs-Reel</em><br>für Instagram daraus." 🌴</div>
+      </div>
+      <div class="photo photo-4">
+        <img src="./erlebnis-bild-4.jpg" alt="Szene 4">
+        <div class="label">✅ <em>Zusammenfassung</em> erstellt &bull;<br>Entitäten im Wiki hinzugefügt.</div>
       </div>
     </div>
-
   </div>
 
-  <!-- CTA PANEL -->
-  <div class="panel-cta">
-    <div class="panel-number" style="top:-2.5mm;left:auto;right:-1mm;background:#EA580C">💡</div>
-    <div class="cta-emoji">🤖</div>
-    <div class="cta-text">
-      <h3>Was kann dein persönlicher Bot noch für dich tun? <span class="bang">Fast alles!</span></h3>
-      <p>
-        📅 Termine planen &bull; 📧 E-Mails schreiben &bull; 📊 Dateien organisieren &bull; 🌐 Webseiten bauen<br>
-        🖼️ Bilder bearbeiten &bull; 📝 Blogartikel verfassen &bull; 🔍 Recherche erledigen &bull; 🎵 Playlists erstellen
-      </p>
-    </div>
-    <a class="cta-button" href="https://it.amertens.me/kontakt" target="_blank">Jetzt<br>anfragen →</a>
+  <!-- CTA -->
+  <div class="cta">
+    <p>Was soll <strong>dein Bot</strong> heute für dich tun?</p>
+    <a class="cta-btn" href="https://it.amertens.me/kontakt" target="_blank">Jetzt unverbindlich anfragen →</a>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <span class="stars">✦ ✦ ✦</span><br>
-    Achim Mertens · <a href="https://it.amertens.me">it.amertens.me</a> · <a href="mailto:achim_mertens@gmx.de">achim_mertens@gmx.de</a><br>
-    Vennstr. 31 · 52249 Eschweiler · 📞 <a href="tel:+4915174412216">+49 1517 4412216</a>
+    Achim Mertens &nbsp;<span class="sep">·</span>&nbsp; <a href="https://it.amertens.me">it.amertens.me</a>
+    &nbsp;<span class="sep">·</span>&nbsp; <a href="mailto:achim_mertens@gmx.de">achim_mertens@gmx.de</a>
+    &nbsp;<span class="sep">·</span>&nbsp; 📞 <a href="tel:+4915174412216">+49 1517 4412216</a>
   </div>
 
 </div>
