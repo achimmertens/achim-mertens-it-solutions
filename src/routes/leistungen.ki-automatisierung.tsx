@@ -575,6 +575,72 @@ function KiAutomatisierungPage() {
               </div>
             </div>
           </fieldset>
+          {/* ========== G. EMAIL-ZUGRIFF (OPTIONAL) ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              G. Email-Zugriff{" "}
+              <span className="font-normal text-muted-foreground text-sm">
+                (optional)
+              </span>
+            </legend>
+            <div className="mt-5 space-y-5">
+              <SelectField
+                label="Mail-Provider"
+                value={form.emailProvider}
+                onChange={(v) => update("emailProvider", v)}
+                options={[
+                  { value: "gmail", label: "📧 Gmail / Google Workspace" },
+                  { value: "outlook", label: "📧 Outlook / Office 365" },
+                  { value: "gmx", label: "📧 GMX" },
+                  { value: "webde", label: "📧 Web.de" },
+                  { value: "posteo", label: "📧 Posteo" },
+                  { value: "other", label: "📧 Anderer Anbieter" },
+                ]}
+                placeholder="Nicht benötigt / später"
+              />
+
+              <TextField
+                label="SMTP-Server + Port"
+                value={form.smtpServerPort}
+                onChange={(v) => update("smtpServerPort", v)}
+                placeholder="z. B. smtp.gmail.com:587"
+                optional
+              />
+
+              <TextField
+                label="IMAP-Server + Port"
+                value={form.imapServerPort}
+                onChange={(v) => update("imapServerPort", v)}
+                placeholder="z. B. imap.gmail.com:993"
+                optional
+              />
+
+              <TextField
+                label="Mail-Adresse"
+                value={form.emailAccount}
+                onChange={(v) => update("emailAccount", v)}
+                placeholder="agent@beispiel.de"
+                optional
+              />
+
+              <TextField
+                label="Passwort / App-Passwort"
+                value={form.emailPassword}
+                onChange={(v) => update("emailPassword", v)}
+                type="password"
+                placeholder="••••••••"
+                optional
+              />
+
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Der Agent kann so E-Mails senden und empfangen, z. B. für Benachrichtigungen
+                oder automatisierte Antworten. Die Zugangsdaten werden sicher auf Ihrem System
+                gespeichert und nie an Dritte weitergegeben.
+              </p>
+            </div>
+          </fieldset>
+
+          
           {/* ========== F. DATENZUGRIFF ========== */}
           <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
             <legend className="text-lg font-bold text-card-foreground px-2">
