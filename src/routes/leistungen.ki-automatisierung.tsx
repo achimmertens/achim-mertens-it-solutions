@@ -61,6 +61,14 @@ interface FormData {
   dataAccessScope: string;
   dataExchangeMethod: string;
   dataAccessPath: string;
+  // G. Email-Zugriff
+  emailProvider: string;
+  smtpServerPort: string;
+  imapServerPort: string;
+  emailAccount: string;
+  emailPassword: string;
+  // H. Hive Account
+  hiveDesiredName: string;
   // Freitext
   additionalNotes: string;
 }
@@ -89,6 +97,14 @@ const defaults: FormData = {
   dataAccessScope: "",
   dataExchangeMethod: "",
   dataAccessPath: "",
+  // G. Email-Zugriff
+  emailProvider: "",
+  smtpServerPort: "",
+  imapServerPort: "",
+  emailAccount: "",
+  emailPassword: "",
+  // H. Hive Account
+  hiveDesiredName: "",
   additionalNotes: "",
 };
 
@@ -640,7 +656,31 @@ function KiAutomatisierungPage() {
             </div>
           </fieldset>
 
-          
+          {/* ========== H. HIVE ACCOUNT (OPTIONAL) ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              H. Hive Account{" "}
+              <span className="font-normal text-muted-foreground text-sm">
+                (optional)
+              </span>
+            </legend>
+            <div className="mt-5 space-y-5">
+              <TextField
+                label="Wunschname für Hive-Blockchain-Account"
+                value={form.hiveDesiredName}
+                onChange={(v) => update("hiveDesiredName", v)}
+                placeholder="z. B. mein-agent-bot"
+                optional
+              />
+
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Falls gewünscht, kann der Agent einen eigenen Hive-Account erhalten, um
+                Blockchain-basierte Funktionen zu nutzen (z. B. Blogging, Abstimmungen,
+                dezentrale Speicherung). Der Account wird bei Bedarf eingerichtet.
+              </p>
+            </div>
+          </fieldset>
+
           {/* ========== F. DATENZUGRIFF ========== */}
           <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
             <legend className="text-lg font-bold text-card-foreground px-2">
