@@ -72,7 +72,10 @@ interface FormData {
   // I. Speech To Text
   sttLocal: boolean;
   sttOnline: boolean;
-  // J. Kundendaten
+  // J. GitHub
+  githubUsername: string;
+  githubApiKey: string;
+  // K. Kundendaten
   customerName: string;
   customerCompany: string;
   customerEmail: string;
@@ -116,7 +119,10 @@ const defaults: FormData = {
   // I. Speech To Text
   sttLocal: false,
   sttOnline: false,
-  // J. Kundendaten
+  // J. GitHub
+  githubUsername: "",
+  githubApiKey: "",
+  // K. Kundendaten
   customerName: "",
   customerCompany: "",
   customerEmail: "",
@@ -720,7 +726,40 @@ function KiAutomatisierungPage() {
             </div>
           </fieldset>
 
-          {/* ========== J. KUNDENDATEN ========== */}
+          {/* ========== J. GITHUB ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              J. GitHub{" "}
+              <span className="font-normal text-muted-foreground text-sm">
+                (optional)
+              </span>
+            </legend>
+            <div className="mt-5 space-y-5">
+              <TextField
+                label="GitHub-Benutzername"
+                value={form.githubUsername}
+                onChange={(v) => update("githubUsername", v)}
+                placeholder="z. B. maxmustermann"
+                optional
+              />
+              <TextField
+                label="GitHub Personal Access Token (API-Key)"
+                value={form.githubApiKey}
+                onChange={(v) => update("githubApiKey", v)}
+                type="password"
+                placeholder="github_pat_..."
+                optional
+              />
+
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Der Agent kann so auf Ihre GitHub-Repositories zugreifen, Issues verwalten,
+                Code einsehen oder automatisiert Pull Requests erstellen. Der Token wird
+                sicher auf Ihrem System gespeichert.
+              </p>
+            </div>
+          </fieldset>
+
+          {/* ========== K. KUNDENDATEN ========== */}
           <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
             <legend className="text-lg font-bold text-card-foreground px-2">
               J. Kundendaten
