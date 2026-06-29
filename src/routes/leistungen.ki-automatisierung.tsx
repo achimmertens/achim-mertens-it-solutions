@@ -80,6 +80,10 @@ interface FormData {
   customerCompany: string;
   customerEmail: string;
   customerPhone: string;
+  // L. LLM-Wiki
+  llmWikiEnabled: boolean;
+  // M. Meilisearch
+  meilisearchEnabled: boolean;
   // Freitext
   additionalNotes: string;
 }
@@ -127,6 +131,10 @@ const defaults: FormData = {
   customerCompany: "",
   customerEmail: "",
   customerPhone: "",
+  // L. LLM-Wiki
+  llmWikiEnabled: false,
+  // M. Meilisearch
+  meilisearchEnabled: false,
   additionalNotes: "",
 };
 
@@ -762,7 +770,7 @@ function KiAutomatisierungPage() {
           {/* ========== K. KUNDENDATEN ========== */}
           <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
             <legend className="text-lg font-bold text-card-foreground px-2">
-              J. Kundendaten
+              K. Kundendaten
             </legend>
             <div className="mt-5 space-y-5">
               <TextField
@@ -791,6 +799,54 @@ function KiAutomatisierungPage() {
                 placeholder="z. B. +49 171 1234567"
                 type="tel"
                 optional
+              />
+            </div>
+          </fieldset>
+
+          {/* ========== L. LLM-WIKI ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              L. LLM-Wiki{" "}
+              <span className="font-normal text-muted-foreground text-sm">
+                (optional)
+              </span>
+            </legend>
+            <div className="mt-5 space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Ein <strong>LLM-Wiki</strong> ist ein persönliches Wissensrepository, das vom
+                KI-Assistenten durchsucht werden kann. Dokumente wie Notizen, Handbücher,
+                Protokolle oder Fachartikel werden dort indexiert – der Agent findet so
+                relevante Informationen blitzschnell und kann sie in Antworten einfließen
+                lassen, ohne jedes Mal eine Internet-Suche durchführen zu müssen.
+              </p>
+              <CheckField
+                label="LLM-Wiki einrichten?"
+                checked={form.llmWikiEnabled}
+                onChange={(v) => update("llmWikiEnabled", v)}
+              />
+            </div>
+          </fieldset>
+
+          {/* ========== M. MEILISEARCH ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              M. Meilisearch{" "}
+              <span className="font-normal text-muted-foreground text-sm">
+                (optional)
+              </span>
+            </legend>
+            <div className="mt-5 space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong>Meilisearch</strong> ist eine extrem schnelle Open-Source-Suchmaschine.
+                Anders als ein LLM-Wiki (das semantisch mit KI arbeitet) durchsucht
+                Meilisearch riesige Dokumentenbestände in Millisekunden nach Stichworten –
+                ideal für große Wissensdatenbanken, Archive oder technische
+                Dokumentationen, bei denen es auf exakte Treffer ankommt.
+              </p>
+              <CheckField
+                label="Meilisearch einrichten?"
+                checked={form.meilisearchEnabled}
+                onChange={(v) => update("meilisearchEnabled", v)}
               />
             </div>
           </fieldset>
