@@ -69,6 +69,14 @@ interface FormData {
   emailPassword: string;
   // H. Hive Account
   hiveDesiredName: string;
+  // I. Speech To Text
+  sttLocal: boolean;
+  sttOnline: boolean;
+  // J. Kundendaten
+  customerName: string;
+  customerCompany: string;
+  customerEmail: string;
+  customerPhone: string;
   // Freitext
   additionalNotes: string;
 }
@@ -105,6 +113,14 @@ const defaults: FormData = {
   emailPassword: "",
   // H. Hive Account
   hiveDesiredName: "",
+  // I. Speech To Text
+  sttLocal: false,
+  sttOnline: false,
+  // J. Kundendaten
+  customerName: "",
+  customerCompany: "",
+  customerEmail: "",
+  customerPhone: "",
   additionalNotes: "",
 };
 
@@ -678,6 +694,65 @@ function KiAutomatisierungPage() {
                 Blockchain-basierte Funktionen zu nutzen (z. B. Blogging, Abstimmungen,
                 dezentrale Speicherung). Der Account wird bei Bedarf eingerichtet.
               </p>
+            </div>
+          </fieldset>
+
+          {/* ========== I. SPEECH TO TEXT ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              I. Speech To Text
+            </legend>
+            <div className="mt-5 space-y-4">
+              <p className="text-sm text-muted-foreground mb-2">
+                Welche Methode zur Spracherkennung soll der Agent nutzen? Beide Optionen sind
+                gleichzeitig wählbar.
+              </p>
+              <CheckField
+                label="Lokal (sicher + kostenlos)"
+                checked={form.sttLocal}
+                onChange={(v) => update("sttLocal", v)}
+              />
+              <CheckField
+                label="Online (schnell)"
+                checked={form.sttOnline}
+                onChange={(v) => update("sttOnline", v)}
+              />
+            </div>
+          </fieldset>
+
+          {/* ========== J. KUNDENDATEN ========== */}
+          <fieldset className="p-7 bg-card border border-border rounded-xl" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <legend className="text-lg font-bold text-card-foreground px-2">
+              J. Kundendaten
+            </legend>
+            <div className="mt-5 space-y-5">
+              <TextField
+                label="Ihr Name"
+                value={form.customerName}
+                onChange={(v) => update("customerName", v)}
+                placeholder="z. B. Max Mustermann"
+              />
+              <TextField
+                label="Firma / Organisation"
+                value={form.customerCompany}
+                onChange={(v) => update("customerCompany", v)}
+                placeholder="z. B. Muster GmbH"
+              />
+              <TextField
+                label="E-Mail-Adresse"
+                value={form.customerEmail}
+                onChange={(v) => update("customerEmail", v)}
+                placeholder="max@beispiel.de"
+                type="email"
+              />
+              <TextField
+                label="Telefon / Mobil"
+                value={form.customerPhone}
+                onChange={(v) => update("customerPhone", v)}
+                placeholder="z. B. +49 171 1234567"
+                type="tel"
+                optional
+              />
             </div>
           </fieldset>
 
