@@ -8,7 +8,7 @@ Achim Mertens
 Vennstr. 31
 52249 Eschweiler
 +49 1517 4412216
-Mail: achim_mertens@gmx.de (Betreff: Consultant Anfrage)
+Mail: info@amertens.me (Betreff: Consultant Anfrage)
 
 Anbei lade ich noch meine letzte Rechnung hoch. Du sollst das Design, die Kontodaten und das Logo übernehmen. Bitte erstelle die Webseite so, dass sie auf allen Geräten gut aussieht und einfach zu navigieren ist. Ich möchte, dass potenzielle Kunden sofort verstehen, welche Dienstleistungen ich anbiete und warum sie mich wählen sollten. 
 

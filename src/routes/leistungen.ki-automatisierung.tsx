@@ -947,12 +947,12 @@ function KiAutomatisierungPage() {
                 <p className="font-semibold">JSON an mich senden lassen?</p>
                 <p className="text-sm mt-1 opacity-90">
                   Speichern Sie das JSON lokal oder kopieren Sie es. Auf Wunsch wird es an meine
-                  E-Mail-Adresse <strong>achim_mertens@gmx.de</strong> gesendet (CC an
+                  E-Mail-Adresse <strong>info@amertens.me</strong> gesendet (CC an
                   <strong>helbard.bot@gmx.de</strong>) — schreiben Sie mir einfach eine kurze
                   Nachricht mit dem JSON, und ich kümmere mich um die Umsetzung.
                 </p>
                 <a
-                  href={`mailto:achim_mertens@gmx.de?cc=${encodeURIComponent("helbard.bot@gmx.de")}&subject=${encodeURIComponent("OpenClaw-Agent Konfiguration")}&body=${encodeURIComponent("Anbei das JSON für meinen OpenClaw-Agenten.\n\n" + JSON.stringify(generated, null, 2))}`}
+                  href={`mailto:info@amertens.me?cc=${encodeURIComponent("helbard.bot@gmx.de")}&subject=${encodeURIComponent("OpenClaw-Agent Konfiguration")}&body=${encodeURIComponent("Anbei das JSON für meinen OpenClaw-Agenten.\n\n" + JSON.stringify(generated, null, 2))}`}
                   className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold underline hover:no-underline"
                 >
                   <Mail size={15} /> Direkt per E-Mail senden

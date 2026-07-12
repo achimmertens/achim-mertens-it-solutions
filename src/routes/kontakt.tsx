@@ -12,7 +12,7 @@ export const Route = createFileRoute("/kontakt")({
 });
 
 function Kontakt() {
-  const mailto = "mailto:achim_mertens@gmx.de?subject=" + encodeURIComponent("Consultant Anfrage");
+  const mailto = "mailto:info@amertens.me?subject=" + encodeURIComponent("Consultant Anfrage");
   return (
     <>
       <section className="bg-primary text-primary-foreground">
@@ -32,7 +32,7 @@ function Kontakt() {
           </div>
           <h2 className="mt-4 text-xl font-bold text-card-foreground">E-Mail</h2>
           <p className="mt-1 text-muted-foreground">Mit Betreff „Consultant Anfrage" landet Ihre Nachricht direkt in der richtigen Ablage.</p>
-          <span className="mt-3 font-semibold text-primary group-hover:text-accent">achim_mertens@gmx.de</span>
+          <span className="mt-3 font-semibold text-primary group-hover:text-accent">info@amertens.me</span>
         </a>
 
         <a href="tel:+4915174412216" className="group p-7 bg-card border border-border rounded-xl hover:border-accent transition-colors flex flex-col" style={{ boxShadow: "var(--shadow-soft)" }}>

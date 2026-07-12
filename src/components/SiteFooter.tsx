@@ -16,7 +16,7 @@ export function SiteFooter() {
           <p className="flex items-center gap-2"><MapPin size={16} /> Vennstr. 31, 52249 Eschweiler</p>
           <p className="flex items-center gap-2"><Phone size={16} /> +49 1517 4412216</p>
           <p className="flex items-center gap-2"><Mail size={16} />
-            <a className="hover:text-accent" href="mailto:achim_mertens@gmx.de?subject=Consultant%20Anfrage">achim_mertens@gmx.de</a>
+            <a className="hover:text-accent" href="mailto:info@amertens.me?subject=Consultant%20Anfrage">info@amertens.me</a>
           </p>
         </div>
         <div>

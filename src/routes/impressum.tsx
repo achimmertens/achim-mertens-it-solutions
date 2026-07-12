@@ -28,7 +28,7 @@ function Impressum() {
         <div>
           <h2 className="text-xl font-semibold text-primary">Kontakt</h2>
           <p className="mt-2">Telefon: +49 1517 4412216<br />
-          E-Mail: achim_mertens@gmx.de</p>
+          E-Mail: info@amertens.me</p>
         </div>
         <div>
           <h2 className="text-xl font-semibold text-primary">Umsatzsteuer</h2>
