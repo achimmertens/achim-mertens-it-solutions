@@ -16,7 +16,7 @@ const stunden = [
   { label: "Online-Kommunikation", price: "100 € / h", note: "Chat, Videomeetings, Anrufe – alle Live-Kommunikationswege außer Vor-Ort-Termine." },
   { label: "Vor-Ort-Anwesenheit", price: "120 € / h" },
   { label: "Programmierung, Wartung, offline Kommunikation …", price: "80 € / h", note: "Alle Tätigkeiten, die ich ungestört von zu Hause aus erledigen kann." },
-  { label: "Fahrtkosten", price: "1 € / km", note: "gefahren Kilometer (ab 3 km)" },
+  { label: "Fahrtkosten", price: "1 € / km", note: "gefahrene Kilometer (ab 3 km)" },
   { label: "Anruf", price: "15 € / Anruf", note: "zzgl. Arbeitszeit" },
 ];
 
